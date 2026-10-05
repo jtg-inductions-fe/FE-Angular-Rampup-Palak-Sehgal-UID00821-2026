@@ -1,59 +1,111 @@
-# AngularRampupAssignment
+# FE Angular Rampup Assignment
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+## Getting Started
 
-## Development server
+### Prerequisites
 
-To start a local development server, run:
+- **Node.js**: Version 20+. You can download and install it from https://nodejs.org/en
+- **npm**: Node.js package manager, which comes bundled with Node.js.
 
-```bash
-ng serve
-```
+### Installing
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+To set up the project on your local environment, follow these steps:
 
-## Code scaffolding
+1. **Clone the Repository**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+   First, you need to clone the repository:
+   - **HTTPS:** `https://github.com/jtg-inductions-fe/FE-Angular-Rampup-Palak-Sehgal-UID00821-2026.git`
+   - **SSH:** `git@github.com:jtg-inductions-fe/FE-Angular-Rampup-Palak-Sehgal-UID00821-2026.git`
 
-```bash
-ng generate component component-name
-```
+2. **nvm (Node Version Manager)**: If the required Node version 20+ is already installed and active, you can skip this step else you can use nvm (Node Version Manager). Here's how to use it:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   - **Switch Node Version**: If the required Node version is already installed, run:
 
-```bash
-ng generate --help
-```
+     ```bash
+     nvm use
+     ```
 
-## Building
+   - **Install Node Version**: If the required Node version isn’t installed, you can install it by running:
+     ```bash
+     nvm install
+     ```
 
-To build the project run:
+   > **_Tip:_** If you don't have nvm installed, you can install it by following the instructions on [nvm-sh/nvm](https://github.com/nvm-sh/nvm).
 
-```bash
-ng build
-```
+   Alternatively, you can update Node.js directly by downloading the latest version from the official website: nodejs.org.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. **Install the necessary dependencies using npm**
 
-## Running unit tests
+   For deterministic enterprise builds, use `npm ci`:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+   ```bash
+   npm ci
+   ```
 
-```bash
-ng test
-```
+   Alternatively, you can run npm install
 
-## Running end-to-end tests
+4. Run the Development Server
 
-For end-to-end (e2e) testing, run:
+   ```bash
+   npm start
+   ```
 
-```bash
-ng e2e
-```
+   The app will typically be available at http://localhost:4200, but check the terminal output for the exact URL.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+   NOTE: The preferred way to change the development server's port number is by running:
 
-## Additional Resources
+   ```bash
+   ng serve --port <New Port>
+   ```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   Alternatively, you can modify the default port directly under architect.serve.options.port in angular.json at the root level of the project.
+
+5. Build the Project
+
+   ```bash
+   npm run build
+   ```
+
+   This command will generate the optimized production files in the dist/ directory.
+
+   6. Lint the Code
+
+   ```bash
+   npm run lint
+   ```
+
+   This command will scan the project and check for any lint errors using ESLint.
+
+6. Fix Linting Errors
+
+   ```bash
+   npm run lint:fix
+   ```
+
+   This command will automatically fix ESLint errors across the project.
+
+7. Code Formatting (Prettier)
+
+   ```bash
+   npm run format
+   ```
+
+   This command will automatically format all files using Prettier.
+
+8. Run Unit Tests
+
+   ```bash
+   npm test
+   ```
+
+   This command will execute unit tests using the configured test runner.
+
+9. Run Production Server with SSR (Server-Side Rendering)
+
+   ```bash
+   npm run serve:ssr:angular-rampup-assignment
+   ```
+
+   This command starts a Node.js Express server that pre-renders the Angular application into static HTML before sending it to the client. This improves SEO and initial load performance.
+   
+   **Note:** You must build the project (`npm run build`) before running this command.
