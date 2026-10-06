@@ -107,5 +107,15 @@ To set up the project on your local environment, follow these steps:
    ```
 
    This command starts a Node.js Express server that pre-renders the Angular application into static HTML before sending it to the client. This improves SEO and initial load performance.
-   
+
    **Note:** You must build the project (`npm run build`) before running this command.
+
+## Environments
+
+This project uses Angular environments configured in the `src/environments/` directory:
+
+- `environment.ts`: Used for production builds.
+- `environment.development.ts`: Used for local development (`npm start`).
+
+**Important Security Note:**
+Do NOT place sensitive passwords or secret keys in these environment files! These files are bundled and sent to the browser, so everything inside them is publicly visible. They are only meant for public configuration (like backend API URLs or feature flags) and are safely committed to Git.

@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+@use '../base/typography' as typo;
+@use '/theme-colors' as theme-colors;
+
+// (i) Global Theme Application using M3 API
+$custom-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: theme-colors.$primary-palette,
+    ),
+    typography: (
+      brand-family: typo.$font-family-base,
+      plain-family: typo.$font-family-base,
+      bold-weight: typo.$font-weight-bold,
+      medium-weight: typo.$font-weight-medium,
+      regular-weight: typo.$font-weight-regular,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// (ii) Apply theme to all Material components via the :root selector
+:root {
+  @include mat.all-component-themes($custom-theme);
+}
