@@ -42,7 +42,8 @@ export interface UpdateArticleRequest {
 export type SortByOption = 'createdAt' | 'updatedAt' | 'title';
 export type SortOrderOption = 'ASC' | 'DESC';
 
-export interface ArticleQueryParams {
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+export type ArticleQueryParams = {
   page?: number;
   pageSize?: number;
   search?: string;
@@ -50,7 +51,7 @@ export interface ArticleQueryParams {
   author?: string;
   sortBy?: SortByOption;
   sortOrder?: SortOrderOption;
-}
+};
 
 /**
  * 5. Complete Article Response Types
