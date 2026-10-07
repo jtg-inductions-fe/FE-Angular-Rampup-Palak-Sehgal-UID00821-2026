@@ -68,15 +68,15 @@ To set up the project on your local environment, follow these steps:
 
    This command will generate the optimized production files in the dist/ directory.
 
-   6. Lint the Code
+6. Lint the Code
 
-   ```bash
-   npm run lint
-   ```
+```bash
+npm run lint
+```
 
-   This command will scan the project and check for any lint errors using ESLint.
+This command will scan the project and check for any lint errors using ESLint.
 
-6. Fix Linting Errors
+7. Fix Linting Errors
 
    ```bash
    npm run lint:fix
@@ -84,7 +84,7 @@ To set up the project on your local environment, follow these steps:
 
    This command will automatically fix ESLint errors across the project.
 
-7. Code Formatting (Prettier)
+8. Code Formatting (Prettier)
 
    ```bash
    npm run format
@@ -92,7 +92,7 @@ To set up the project on your local environment, follow these steps:
 
    This command will automatically format all files using Prettier.
 
-8. Run Unit Tests
+9. Run Unit Tests
 
    ```bash
    npm test
@@ -100,15 +100,15 @@ To set up the project on your local environment, follow these steps:
 
    This command will execute unit tests using the configured test runner.
 
-9. Run Production Server with SSR (Server-Side Rendering)
+10. Run Production Server with SSR (Server-Side Rendering)
 
-   ```bash
-   npm run serve:ssr:angular-rampup-assignment
-   ```
+```bash
+npm run serve:ssr:angular-rampup-assignment
+```
 
-   This command starts a Node.js Express server that pre-renders the Angular application into static HTML before sending it to the client. This improves SEO and initial load performance.
+This command starts a Node.js Express server that pre-renders the Angular application into static HTML before sending it to the client. This improves SEO and initial load performance.
 
-   **Note:** You must build the project (`npm run build`) before running this command.
+**Note:** You must build the project (`npm run build`) before running this command.
 
 ## Environments
 

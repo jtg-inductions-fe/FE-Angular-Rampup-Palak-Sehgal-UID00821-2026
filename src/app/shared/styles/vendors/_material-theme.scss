@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @use '../base/typography' as typo;
-@use '/theme-colors' as theme-colors;
+@use '../../../../../theme-colors' as theme-colors;
 
 // (i) Global Theme Application using M3 API
 $custom-theme: mat.define-theme(

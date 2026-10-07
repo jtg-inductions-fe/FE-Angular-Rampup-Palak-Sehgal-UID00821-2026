@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["src/main.ts"],
-  "out": "docs",
-  "name": "Angular Rampup Assignment Documentation"
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "tsconfig": "tsconfig.json"
 }
