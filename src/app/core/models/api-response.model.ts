@@ -31,3 +31,13 @@ export interface PaginatedData<T> {
   currentPage: number;
   pageSize: number;
 }
+
+/**
+ * Allowed values for URL Query Parameters
+ */
+export type QueryParamValue = string | number | boolean | null | undefined;
+
+/**
+ * Common shape for Query Parameters object
+ */
+export type QueryParams = Record<string, QueryParamValue>;

@@ -27,7 +27,7 @@ export interface RegisterRequest {
  * User form to login user
  */
 export interface LoginRequest {
-  email: string;
+  username: string;
   password: string;
 }
 
