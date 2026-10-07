@@ -1,0 +1,16 @@
+# Build Outputs & Cache
+dist/
+.angular/
+coverage/
+
+# Dependencies & Lockfiles
+node_modules/
+package-lock.json
+
+# IDE & OS Specific
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log

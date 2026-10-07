@@ -1,0 +1,16 @@
+// Load Self-Hosted Fonts (must be first)
+@use 'app/shared/styles/abstracts/fonts';
+
+// Import Design System Foundations
+@use 'app/shared/styles/abstracts/variables';
+@use 'app/shared/styles/abstracts/spacing';
+@use 'app/shared/styles/abstracts/mixins';
+@use 'app/shared/styles/abstracts/pallete';
+@use 'app/shared/styles/base/typography';
+
+// Import Base Styles & Resets
+@use 'app/shared/styles/base/reset';
+@use 'app/shared/styles/base/base';
+
+// Import Custom Material Theme
+@use 'app/shared/styles/vendors/material-theme';

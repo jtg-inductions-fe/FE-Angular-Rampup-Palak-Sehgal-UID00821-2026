@@ -1,0 +1,17 @@
+@use '../abstracts/pallete' as pallete;
+
+// Color Palettes & Design Tokens
+$primary-color: pallete.$medium-green;
+$accent-color: pallete.$pure-black;
+$warn-color: pallete.$soft-red;
+$background-color: pallete.$pure-white;
+$text-primary: pallete.$gray-900;
+$text-secondary: pallete.$gray-600;
+
+// Responsive Breakpoints
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
