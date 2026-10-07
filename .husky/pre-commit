@@ -3,7 +3,6 @@
 # Load NVM and Node PATH for GUI tools (VS Code)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-export PATH=$PATH:/usr/local/bin:/usr/bin:~/.nvm/versions/node/$(ls ~/.nvm/versions/node 2>/dev/null | tail -n 1)/bin
 
 # Validate Branch Name
 VALID_BRANCH_REGEX="^([A-Z]{2,3})_A[0-9]+_[0-9]{2}(/.*)?$"
