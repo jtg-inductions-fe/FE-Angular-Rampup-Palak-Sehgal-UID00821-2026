@@ -6,7 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "serve:ssr:angular-rampup-assignment": "node dist/angular-rampup-assignment/server/server.mjs",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
