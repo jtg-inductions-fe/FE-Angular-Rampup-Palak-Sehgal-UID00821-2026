@@ -16,7 +16,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    // 404 page ko bhi lazy-load karenge taaki main bundle me unnecessary load na ho
     loadComponent: () =>
       import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent),
   },
