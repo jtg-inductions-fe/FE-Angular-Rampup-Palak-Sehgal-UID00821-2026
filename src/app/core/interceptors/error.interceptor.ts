@@ -2,8 +2,8 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, EMPTY, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { ERROR_MESSAGES } from '../constants/error-messages.constant';
-import { HttpStatus } from '../constants/http-status.enum';
+import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constant';
+import { HttpStatus } from '../../shared/constants/http-status.enum';
 import { NotificationService } from '../services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {

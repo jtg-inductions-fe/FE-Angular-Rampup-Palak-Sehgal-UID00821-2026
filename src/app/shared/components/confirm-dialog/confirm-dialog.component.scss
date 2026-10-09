@@ -1,0 +1,21 @@
+@use 'base/typography' as typo;
+@use 'abstracts/spacing' as spacing;
+
+mat-dialog-content {
+  min-width: 22rem;
+  overflow: hidden;
+  padding-top: spacing.spacer(2);
+  padding-bottom: spacing.spacer(4);
+
+  p {
+    font-size: typo.$font-size-body;
+    line-height: typo.$line-height-base;
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+mat-dialog-actions {
+  padding: 0 spacing.spacer(4) spacing.spacer(4) spacing.spacer(4);
+  margin-bottom: 0;
+  gap: spacing.spacer(2);
+}

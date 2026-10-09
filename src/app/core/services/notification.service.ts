@@ -1,9 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogData } from '../models';
+import { Observable } from 'rxjs';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
+  private dialog = inject(MatDialog);
+
   private snackBar = inject(MatSnackBar);
   showSuccess(message: string): void {
     this.snackBar.open(message, 'Close', {
@@ -33,5 +39,15 @@ export class NotificationService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
+  }
+
+  confirm(data: ConfirmDialogData): Observable<boolean> {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      disableClose: true,
+      data: data,
+    });
+
+    return dialogRef.afterClosed();
   }
 }
