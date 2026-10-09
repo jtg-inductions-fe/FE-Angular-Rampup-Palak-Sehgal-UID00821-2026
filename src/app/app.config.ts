@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  ErrorHandler,
   inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
@@ -11,6 +12,7 @@ import { AuthService } from './core/services/auth.service';
 import { catchError, firstValueFrom, of } from 'rxjs';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { GlobalErrorHandler } from './core/errors/global-error-handler';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,5 +27,9 @@ export const appConfig: ApplicationConfig = {
       }
       return Promise.resolve();
     }),
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
   ],
 };
