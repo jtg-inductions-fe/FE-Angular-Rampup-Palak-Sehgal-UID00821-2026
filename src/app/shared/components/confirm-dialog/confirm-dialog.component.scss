@@ -1,5 +1,6 @@
 @use 'base/typography' as typo;
 @use 'abstracts/spacing' as spacing;
+@use 'abstracts/variables' as color;
 
 mat-dialog-content {
   min-width: 22rem;
@@ -10,7 +11,7 @@ mat-dialog-content {
   p {
     font-size: typo.$font-size-body;
     line-height: typo.$line-height-base;
-    color: rgba(0, 0, 0, 0.75);
+    color: color.$text-secondary;
   }
 }
 
