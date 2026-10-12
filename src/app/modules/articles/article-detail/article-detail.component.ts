@@ -1,5 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, input } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 
 @Component({
@@ -21,12 +20,6 @@ import { JsonPipe } from '@angular/common';
     </div>
   `,
 })
-export class ArticleDetailComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  articleData = signal<unknown>(null);
-
-  ngOnInit(): void {
-    const data = this.route.snapshot.data['articleData'];
-    this.articleData.set(data);
-  }
+export class ArticleDetailComponent {
+  articleData = input<unknown>();
 }
