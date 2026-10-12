@@ -36,6 +36,7 @@ module.exports = defineConfig([
         },
       ],
       '@typescript-eslint/no-explicit-any': 'error',
+      '@angular-eslint/prefer-standalone': 'off',
       '@typescript-eslint/naming-convention': [
         'error',
         {

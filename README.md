@@ -100,16 +100,6 @@ This command will scan the project and check for any lint errors using ESLint.
 
    This command will execute unit tests using the configured test runner.
 
-10. Run Production Server with SSR (Server-Side Rendering)
-
-```bash
-npm run serve:ssr:angular-rampup-assignment
-```
-
-This command starts a Node.js Express server that pre-renders the Angular application into static HTML before sending it to the client. This improves SEO and initial load performance.
-
-**Note:** You must build the project (`npm run build`) before running this command.
-
 ## Environments
 
 This project uses Angular environments configured in the `src/environments/` directory:
