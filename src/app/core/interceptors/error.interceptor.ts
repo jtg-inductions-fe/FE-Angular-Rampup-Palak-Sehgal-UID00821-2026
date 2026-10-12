@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, EMPTY, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constant';
 import { HttpStatus } from '../../shared/constants/http-status.enum';
@@ -12,10 +12,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === HttpStatus.unauthorized || error.status === HttpStatus.forbidden) {
+      if (error.status === HttpStatus.unauthorized) {
         notificationService.showWarning(ERROR_MESSAGES.UNAUTHORIZED);
         authService.logout();
-        return EMPTY;
+        return throwError(() => error);
+      } else if (error.status === HttpStatus.forbidden) {
+        notificationService.showWarning(ERROR_MESSAGES.FORDIDDEN);
       }
       let errorMessage = ERROR_MESSAGES.UNEXPECTED;
       console.warn(errorMessage);
