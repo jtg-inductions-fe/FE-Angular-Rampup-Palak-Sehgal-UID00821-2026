@@ -34,9 +34,12 @@
         <input
           matInput
           formControlName="password"
-          type="password"
+          [type]="hidePassword ? 'password' : 'text'"
           placeholder="Create a password"
         />
+        <button mat-icon-button matSuffix type="button" (click)="togglePassword($event)">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         @if (
           registerForm.get('password')?.hasError('required') &&
           registerForm.get('password')?.touched
@@ -55,9 +58,12 @@
         <input
           matInput
           formControlName="confirmPassword"
-          type="password"
+          [type]="hideConfirmPassword ? 'password' : 'text'"
           placeholder="Confirm your password"
         />
+        <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPassword($event)">
+          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         @if (
           registerForm.get('confirmPassword')?.hasError('required') &&
           registerForm.get('confirmPassword')?.touched

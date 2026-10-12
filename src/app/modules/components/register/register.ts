@@ -30,7 +30,17 @@ export class Register {
     },
     { validators: passwordMatchValidator }
   );
+  hidePassword = true;
+  hideConfirmPassword = true;
+  togglePassword(event: MouseEvent): void {
+    event.preventDefault();
+    this.hidePassword = !this.hidePassword;
+  }
 
+  toggleConfirmPassword(event: MouseEvent): void {
+    event.preventDefault();
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
   onSubmit() {
     console.log('Register Form Data:', this.registerForm.value);
   }
