@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, EMPTY, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constant';
+import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constants';
 import { HttpStatus } from '../../shared/constants/http-status.enum';
 import { NotificationService } from '../services/notification.service';
 
