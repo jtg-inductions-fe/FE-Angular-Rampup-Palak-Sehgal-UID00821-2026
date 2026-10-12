@@ -11,7 +11,7 @@ import { AUTH_FORM_RULES } from '../../auth/validators/auth-form.rules';
 export class Login {
   private fb = inject(FormBuilder);
   loginForm: FormGroup = this.fb.group({
-    username: ['', [AUTH_FORM_RULES.username]],
+    username: ['', AUTH_FORM_RULES.username],
     password: ['', AUTH_FORM_RULES.password],
   });
 

@@ -1,1 +1,74 @@
-<p>register works!</p>
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Join our network.</h1>
+    <p class="auth-subtitle">Create an account to start writing.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <!-- Username Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter username" />
+        @if (registerForm.get('username')?.hasError('required')) {
+          <mat-error>Username is required.</mat-error>
+        }
+        @if (registerForm.get('username')?.hasError('minlength')) {
+          <mat-error>Minimum 3 characters required.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Email Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email address</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="your@email.com" />
+        @if (registerForm.get('email')?.hasError('required')) {
+          <mat-error>Email is required.</mat-error>
+        }
+        @if (registerForm.get('email')?.hasError('email')) {
+          <mat-error>Please enter a valid email.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Password Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          placeholder="Create a password"
+        />
+        @if (
+          registerForm.get('password')?.hasError('required') &&
+          registerForm.get('password')?.touched
+        ) {
+          <mat-error>Password is required.</mat-error>
+        } @else if (registerForm.get('password')?.hasError('minlength')) {
+          <mat-error>Minimum 8 characters required.</mat-error>
+        } @else if (registerForm.get('password')?.hasError('weakPassword')) {
+          <mat-error>Must contain 2 numbers and 2 special characters.</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Confirm Password Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          formControlName="confirmPassword"
+          type="password"
+          placeholder="Confirm your password"
+        />
+        @if (
+          registerForm.get('confirmPassword')?.hasError('required') &&
+          registerForm.get('confirmPassword')?.touched
+        ) {
+          <mat-error>Please confirm your password.</mat-error>
+        } @else if (registerForm.get('confirmPassword')?.hasError('passwordsDontMatch')) {
+          <mat-error>Passwords do not match.</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" class="submit-btn">Sign Up</button>
+    </form>
+  </div>
+</div>

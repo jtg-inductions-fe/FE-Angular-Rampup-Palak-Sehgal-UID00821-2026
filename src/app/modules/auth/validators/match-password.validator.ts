@@ -4,11 +4,34 @@ export const passwordMatchValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
   const password = control.get('password')?.value;
-  const confirmPassword = control.get('confirmPassword')?.value;
+  const confirmPasswordControl = control.get('confirmPassword');
 
-  if (password && confirmPassword && password !== confirmPassword) {
-    return { passwordsDontMatch: true };
+  if (!confirmPasswordControl) return null;
+
+  const confirmPassword = confirmPasswordControl.value;
+
+  const removeMatchError = () => {
+    if (confirmPasswordControl.hasError('passwordsDontMatch')) {
+      const currentErrors = { ...confirmPasswordControl.errors };
+      delete currentErrors['passwordsDontMatch'];
+
+      confirmPasswordControl.setErrors(Object.keys(currentErrors).length ? currentErrors : null);
+    }
+  };
+
+  if (!confirmPassword) {
+    removeMatchError();
+    return null;
   }
 
-  return null;
+  if (password !== confirmPassword) {
+    confirmPasswordControl.setErrors({
+      ...confirmPasswordControl.errors,
+      passwordsDontMatch: true,
+    });
+    return { passwordsDontMatch: true };
+  } else {
+    removeMatchError();
+    return null;
+  }
 };

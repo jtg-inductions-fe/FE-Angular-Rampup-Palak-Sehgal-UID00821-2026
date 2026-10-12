@@ -1,0 +1,57 @@
+// Paths aapke folder structure ke hisab se adjust kar lein
+@use 'abstracts/variables' as var;
+@use 'abstracts/mixins' as mix;
+@use 'abstracts/spacing' as space;
+@use 'abstracts/pallete' as pallete;
+@use 'base/typography' as typo;
+
+.auth-wrapper {
+  @include mix.flex-center;
+  min-height: 100vh;
+  background-color: var.$background-color;
+  padding: space.spacer(4);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  @include mix.flex-column;
+  align-items: center;
+}
+
+.auth-title {
+  font-family: typo.$font-family-article;
+  font-weight: typo.$font-weight-bold;
+  color: var.$text-primary;
+  margin-bottom: space.spacer(2);
+  font-size: typo.$font-size-heading-1;
+}
+
+.auth-subtitle {
+  font-family: typo.$font-family-base;
+  color: var.$text-secondary;
+  margin-bottom: space.spacer(5);
+  font-size: typo.$font-size-body;
+}
+
+.auth-form {
+  @include mix.flex-column;
+  width: 100%;
+  gap: space.spacer(3);
+}
+
+.form-field {
+  width: 100%;
+  font-family: typo.$font-family-base;
+}
+
+.submit-btn {
+  font-family: typo.$font-family-base;
+  font-weight: typo.$font-weight-medium;
+  padding: space.spacer(4) 0;
+  border-radius: 999px;
+  font-size: typo.$font-size-body;
+  margin-top: space.spacer(2);
+  background-color: var.$primary-color;
+  color: pallete.$pure-white;
+}

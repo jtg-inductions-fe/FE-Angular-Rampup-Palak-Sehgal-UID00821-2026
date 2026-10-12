@@ -9,7 +9,7 @@ export function customPasswordValidator(): ValidatorFn {
     const specialMatches = value.match(REGEX.SPECIAL_CHAR) || [];
     if (
       numericMatches.length < VALIDATION_RULES.PASSWORD_MIN_NUMERIC ||
-      specialMatches.length < VALIDATION_RULES.PASSWORD_MIN_NUMERIC
+      specialMatches.length < VALIDATION_RULES.PASSWORD_MIN_SPECIAL
     ) {
       return {
         weakPassword: true,
