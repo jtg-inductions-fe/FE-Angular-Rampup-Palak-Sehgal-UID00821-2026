@@ -14,7 +14,7 @@
 
 .auth-card {
   width: 100%;
-  max-width: 450px;
+  max-width: 28rem;
   @include mix.flex-column;
   align-items: center;
 }
@@ -38,15 +38,4 @@
   @include mix.flex-column;
   width: 100%;
   gap: space.spacer(3);
-}
-
-.submit-btn {
-  font-family: typo.$font-family-base;
-  font-weight: typo.$font-weight-medium;
-  padding: space.spacer(4) 0;
-  border-radius: 999px;
-  font-size: typo.$font-size-body;
-  margin-top: space.spacer(2);
-  background-color: var.$primary-color;
-  color: pallete.$pure-white;
 }
