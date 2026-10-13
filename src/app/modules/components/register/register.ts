@@ -4,6 +4,10 @@ import { AUTH_FORM_RULES } from '@auth/validators/auth-form.rules';
 import { passwordMatchValidator } from '@auth/validators/match-password.validator';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
+import { AuthService } from '../../../core/services/auth.service';
+import { RegisterRequest } from '../../../core/models';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent],
@@ -13,7 +17,10 @@ import { ButtonComponent } from '@shared/components/button/button.component';
 })
 export class Register {
   private fb = inject(FormBuilder);
-  registerForm = this.fb.group(
+  private authService = inject(AuthService);
+  private notificationService = inject(NotificationService);
+  private router = inject(Router);
+  registerForm = this.fb.nonNullable.group(
     {
       username: ['', AUTH_FORM_RULES.username],
       password: ['', AUTH_FORM_RULES.password],
@@ -38,6 +45,21 @@ export class Register {
     return this.registerForm.get('confirmPassword') as FormControl;
   }
   onSubmit() {
-    console.log('Register Form Data:', this.registerForm.value);
+    if (this.registerForm.valid) {
+      const raw = this.registerForm.getRawValue();
+      const formData: RegisterRequest = {
+        username: raw.username,
+        email: raw.email,
+        password: raw.password,
+      };
+      this.authService.register(formData).subscribe({
+        next: () => {
+          this.notificationService.showSuccess('Signed In successfully!');
+          this.router.navigate(['/']);
+        },
+      });
+    } else {
+      this.registerForm.markAllAsTouched();
+    }
   }
 }

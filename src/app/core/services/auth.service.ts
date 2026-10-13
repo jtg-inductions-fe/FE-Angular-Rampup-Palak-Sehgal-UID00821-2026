@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { BaseApiService } from './base-api.service';
-import { AuthResponse, LoginRequest, User, UserProfileResponse } from '../models';
+import { AuthResponse, LoginRequest, RegisterRequest, User, UserProfileResponse } from '../models';
 import { TokenStorageService } from './token-storage.service';
 import { tap } from 'rxjs';
 
@@ -15,11 +15,21 @@ export class AuthService extends BaseApiService {
 
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isLoggedIn = computed(() => !!this.tokenSignal() && !!this.currentUserSignal());
-
+  register(credentials: RegisterRequest) {
+    return this.post<AuthResponse>('users/register', credentials).pipe(
+      tap(response => {
+        if (response.data && response.data.token) {
+          this.tokenStorage.saveToken(response.data.token);
+          this.tokenSignal.set(response.data.token);
+          this.currentUserSignal.set(response.data.user);
+        }
+      })
+    );
+  }
   login(credentials: LoginRequest) {
     return this.post<AuthResponse>('users/login', credentials).pipe(
       tap(response => {
-        if (response.data) {
+        if (response.data && response.data.token) {
           this.tokenStorage.saveToken(response.data.token);
           this.tokenSignal.set(response.data.token);
           this.currentUserSignal.set(response.data.user);
