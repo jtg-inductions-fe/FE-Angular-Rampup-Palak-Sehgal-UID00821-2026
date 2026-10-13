@@ -44,6 +44,9 @@ export class Login {
           this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
         },
+        error: () => {
+          // Handled by errorInterceptor
+        },
       });
     } else {
       this.loginForm.markAllAsTouched();
