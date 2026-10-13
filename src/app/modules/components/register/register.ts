@@ -53,8 +53,8 @@ export class Register {
         password: raw.password,
       };
       this.authService.register(formData).subscribe({
-        next: () => {
-          this.notificationService.showSuccess('Signed In successfully!');
+        next: response => {
+          this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
         },
       });

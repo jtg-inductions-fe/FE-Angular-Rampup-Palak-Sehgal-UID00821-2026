@@ -30,6 +30,7 @@ export class AuthService extends BaseApiService {
     return this.post<AuthResponse>('users/login', credentials).pipe(
       tap(response => {
         if (response.data && response.data.token) {
+          console.log(response.data.user);
           this.tokenStorage.saveToken(response.data.token);
           this.tokenSignal.set(response.data.token);
           this.currentUserSignal.set(response.data.user);
