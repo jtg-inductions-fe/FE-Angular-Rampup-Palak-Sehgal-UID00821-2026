@@ -5,76 +5,36 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
       <!-- Username Field -->
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Username</mat-label>
-        <input matInput formControlName="username" placeholder="Enter username" />
-        @if (registerForm.get('username')?.hasError('required')) {
-          <mat-error>Username is required.</mat-error>
-        }
-        @if (registerForm.get('username')?.hasError('minlength')) {
-          <mat-error>Minimum 3 characters required.</mat-error>
-        }
-      </mat-form-field>
+      <app-text-input
+        [control]="$any(registerForm.get('username'))"
+        label="Username"
+        placeholder="Enter your username"
+      ></app-text-input>
 
       <!-- Email Field -->
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Email address</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="your@email.com" />
-        @if (registerForm.get('email')?.hasError('required')) {
-          <mat-error>Email is required.</mat-error>
-        }
-        @if (registerForm.get('email')?.hasError('email')) {
-          <mat-error>Please enter a valid email.</mat-error>
-        }
-      </mat-form-field>
+      <app-text-input
+        [control]="$any(registerForm.get('email'))"
+        label="Email"
+        type="email"
+        placeholder="Enter your email address"
+      ></app-text-input>
 
       <!-- Password Field -->
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          [type]="hidePassword ? 'password' : 'text'"
-          placeholder="Create a password"
-        />
-        <button mat-icon-button matSuffix type="button" (click)="togglePassword($event)">
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        @if (
-          registerForm.get('password')?.hasError('required') &&
-          registerForm.get('password')?.touched
-        ) {
-          <mat-error>Password is required.</mat-error>
-        } @else if (registerForm.get('password')?.hasError('minlength')) {
-          <mat-error>Minimum 8 characters required.</mat-error>
-        } @else if (registerForm.get('password')?.hasError('weakPassword')) {
-          <mat-error>Must contain 2 numbers and 2 special characters.</mat-error>
-        }
-      </mat-form-field>
+      <app-text-input
+        [control]="$any(registerForm.get('password'))"
+        label="Password"
+        [isPassword]="true"
+      ></app-text-input>
 
       <!-- Confirm Password Field -->
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Confirm Password</mat-label>
-        <input
-          matInput
-          formControlName="confirmPassword"
-          [type]="hideConfirmPassword ? 'password' : 'text'"
-          placeholder="Confirm your password"
-        />
-        <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPassword($event)">
-          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        @if (
-          registerForm.get('confirmPassword')?.hasError('required') &&
-          registerForm.get('confirmPassword')?.touched
-        ) {
-          <mat-error>Please confirm your password.</mat-error>
-        } @else if (registerForm.get('confirmPassword')?.hasError('passwordsDontMatch')) {
-          <mat-error>Passwords do not match.</mat-error>
-        }
-      </mat-form-field>
+      <app-text-input
+        [control]="$any(registerForm.get('confirmPassword'))"
+        label="Confirm Password"
+        [isPassword]="true"
+        placeholder="Confirm your password"
+      ></app-text-input>
 
-      <button mat-flat-button color="primary" type="submit" class="submit-btn">Sign Up</button>
+      <app-button type="submit" [disabled]="registerForm.invalid">Sign Up</app-button>
     </form>
   </div>
 </div>

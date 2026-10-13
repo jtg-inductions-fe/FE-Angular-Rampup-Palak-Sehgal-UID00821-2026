@@ -1,0 +1,30 @@
+@use 'abstracts/variables' as color;
+@use 'abstracts/spacing' as space;
+@use 'base/typography' as typo;
+@use 'abstracts/mixins' as mixin;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+
+  button[mat-icon-button] {
+    @include mixin.flex-center;
+    color: color.$text-secondary;
+    transition: color 0.2s ease;
+
+    mat-icon {
+      font-size: typo.$font-size-heading-3;
+      width: 1.25rem;
+      height: 1.25rem;
+      line-height: typo.$line-height-heading;
+    }
+
+    &:hover {
+      color: color.$text-primary;
+    }
+  }
+}

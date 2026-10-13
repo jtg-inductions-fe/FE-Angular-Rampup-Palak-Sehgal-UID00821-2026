@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AUTH_FORM_RULES } from '../../auth/validators/auth-form.rules';
-import { passwordMatchValidator } from '../../auth/validators/match-password.validator';
+import { AUTH_FORM_RULES } from '@auth/validators/auth-form.rules';
+import { passwordMatchValidator } from '@auth/validators/match-password.validator';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { TextInputComponent } from '@shared/components/text-input/text-input.component';
+import { ButtonComponent } from '@shared/components/button/button.component';
 
 @Component({
   imports: [
@@ -14,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    TextInputComponent,
+    ButtonComponent,
   ],
   selector: 'app-register',
   styleUrl: './register.scss',
@@ -30,17 +34,6 @@ export class Register {
     },
     { validators: passwordMatchValidator }
   );
-  hidePassword = true;
-  hideConfirmPassword = true;
-  togglePassword(event: MouseEvent): void {
-    event.preventDefault();
-    this.hidePassword = !this.hidePassword;
-  }
-
-  toggleConfirmPassword(event: MouseEvent): void {
-    event.preventDefault();
-    this.hideConfirmPassword = !this.hideConfirmPassword;
-  }
   onSubmit() {
     console.log('Register Form Data:', this.registerForm.value);
   }
