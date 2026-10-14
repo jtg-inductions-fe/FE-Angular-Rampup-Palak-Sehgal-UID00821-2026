@@ -1,0 +1,31 @@
+@use 'abstracts/variables' as color;
+@use 'abstracts/spacing' as space;
+@use 'base/typography' as typo;
+
+.dashboard-container {
+  padding: space.spacer(4);
+}
+
+.dashboard-header {
+  margin-bottom: space.spacer(4);
+
+  h1 {
+    color: color.$text-primary;
+    font-size: typo.$font-size-heading-2;
+    margin: 0;
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: space.spacer(4);
+}
+
+.empty-state,
+.loading-state {
+  text-align: center;
+  padding: space.spacer(6);
+  color: color.$text-secondary;
+  font-size: typo.$font-size-heading-1;
+}

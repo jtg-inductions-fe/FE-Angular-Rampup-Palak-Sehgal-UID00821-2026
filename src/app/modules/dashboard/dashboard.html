@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>My Dashboard</h1>
+  </header>
+
+  @if (articles$ | async; as articles) {
+    @if (articles.length === 0) {
+      <div class="empty-state">
+        <p>No Articles found</p>
+      </div>
+    } @else {
+      <div class="cards-grid">
+        @for (article of articles; track article.id) {
+          <app-article-card [article]="article"></app-article-card>
+        }
+      </div>
+    }
+  } @else {
+    <div class="loading-state">
+      <p>Loading articles...</p>
+    </div>
+  }
+</div>
