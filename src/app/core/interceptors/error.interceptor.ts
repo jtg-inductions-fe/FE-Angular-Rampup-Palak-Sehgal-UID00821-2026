@@ -1,10 +1,10 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constants';
-import { HttpStatus } from '../../shared/constants/http-status.enum';
-import { NotificationService } from '../services/notification.service';
+import { AuthService } from '@core/services/auth.service';
+import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
+import { HttpStatus } from '@shared/constants/http-status.enum';
+import { NotificationService } from '@core/services/notification.service';
 
 function extractMessage(item: unknown): string | null {
   if (!item) return null;

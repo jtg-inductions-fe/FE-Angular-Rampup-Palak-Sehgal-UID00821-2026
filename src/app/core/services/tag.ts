@@ -1,7 +1,7 @@
 import { Service } from '@angular/core';
 import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
-import { CreateTagRequest } from '../models';
+import { CreateTagRequest } from '@core/models';
 
 @Service()
 export class Tag extends BaseApiService {

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ArticleService } from '../../core/services/article.service';
+import { ArticleService } from '@core/services/article.service';
 import { map, Observable } from 'rxjs';
-import { Article, ArticleListResponse } from '../../core/models';
+import { Article, ArticleListResponse } from '@core/models';
 @Component({
   selector: 'app-dashboard',
   standalone: false,

@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, inject, Injectable, NgZone } from '@angular/core';
-import { NotificationService } from '../services/notification.service';
-import { ERROR_MESSAGES } from '../../shared/constants/error-messages.constants';
+import { NotificationService } from '@core/services/notification.service';
+import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
 
 function isHttpError(error: unknown): boolean {
   if (!error || typeof error !== 'object') return false;

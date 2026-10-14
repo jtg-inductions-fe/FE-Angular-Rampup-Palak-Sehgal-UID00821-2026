@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { AUTH_FORM_RULES } from '@auth/validators/auth-form.rules';
-import { passwordMatchValidator } from '@auth/validators/match-password.validator';
+import { AUTH_FORM_RULES } from '@modules/auth/validators/auth-form.rules';
+import { passwordMatchValidator } from '@modules/auth/validators/match-password.validator';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { AuthService } from '../../../core/services/auth.service';
-import { RegisterRequest } from '../../../core/models';
-import { NotificationService } from '../../../core/services/notification.service';
+import { AuthService } from '@core/services/auth.service';
+import { RegisterRequest } from '@core/models';
+import { NotificationService } from '@core/services/notification.service';
 import { Router } from '@angular/router';
 
 @Component({

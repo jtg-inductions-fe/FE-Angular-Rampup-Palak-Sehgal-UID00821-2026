@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from './base-api.service';
 import { Observable } from 'rxjs';
-import { Article, ArticleListResponse, ArticleQueryParams, CreateArticleRequest } from '../models';
+import {
+  Article,
+  ArticleListResponse,
+  ArticleQueryParams,
+  CreateArticleRequest,
+} from '@core/models';
 
 @Injectable({
   providedIn: 'root',

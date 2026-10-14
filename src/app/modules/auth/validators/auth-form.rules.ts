@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { VALIDATION_RULES } from '../../../shared/constants/regex.constants';
+import { VALIDATION_RULES } from '@shared/constants/regex.constants';
 import { customPasswordValidator } from './password.validator';
 
 export const AUTH_FORM_RULES = {
