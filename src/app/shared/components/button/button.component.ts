@@ -11,6 +11,5 @@ import { NgClass } from '@angular/common';
 })
 export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() color: 'primary' | 'accent' | 'warn' = 'primary';
   @Input() disabled = false;
 }

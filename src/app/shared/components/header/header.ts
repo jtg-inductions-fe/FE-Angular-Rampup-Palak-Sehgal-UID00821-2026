@@ -2,11 +2,12 @@
 import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { AuthService } from '../../../core/services/auth.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, NgClass],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
