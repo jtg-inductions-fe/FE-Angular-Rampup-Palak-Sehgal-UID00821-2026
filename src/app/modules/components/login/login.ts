@@ -10,7 +10,7 @@ import { NotificationService } from '../../../core/services/notification.service
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],
   selector: 'app-login',
-  styleUrl: './login.scss',
+  styleUrl: '../../auth/auth.component.scss',
   templateUrl: './login.html',
 })
 export class Login {
