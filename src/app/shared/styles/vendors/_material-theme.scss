@@ -25,4 +25,7 @@ $custom-theme: mat.define-theme(
 // (ii) Apply theme to all Material components via the :root selector
 :root {
   @include mat.all-component-themes($custom-theme);
+  .error {
+    @include mat.button-theme($theme: $custom-theme, $color-variant: 'error');
+  }
 }

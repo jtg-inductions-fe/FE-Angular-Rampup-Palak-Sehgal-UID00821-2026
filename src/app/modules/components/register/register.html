@@ -1,0 +1,40 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Join Medium Pro</h1>
+    <p class="auth-subtitle">Create an account to start writing.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <!-- Username Field -->
+      <app-text-input
+        [control]="username"
+        label="Username"
+        placeholder="Enter your username"
+      ></app-text-input>
+
+      <!-- Email Field -->
+      <app-text-input
+        [control]="email"
+        label="Email"
+        type="email"
+        placeholder="Enter your email address"
+      ></app-text-input>
+
+      <!-- Password Field -->
+      <app-text-input [control]="password" label="Password" [isPassword]="true"></app-text-input>
+
+      <!-- Confirm Password Field -->
+      <app-text-input
+        [control]="confirmPassword"
+        label="Confirm Password"
+        [isPassword]="true"
+        placeholder="Confirm your password"
+      ></app-text-input>
+
+      <app-button type="submit" [disabled]="registerForm.invalid || isLoading">Sign Up</app-button>
+      <p class="auth-footer-text">
+        Already have an account?
+        <a routerLink="/auth/login" class="auth-link">Login</a>
+      </p>
+    </form>
+  </div>
+</div>

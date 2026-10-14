@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@use 'abstracts/spacing' as space;
+@use 'base/typography' as typo;
+
+:host {
+  display: block;
+  width: 100%;
+  margin-top: space.spacer(3);
+}
+
+.custom-submit-btn {
+  width: 100%;
+  padding: 1.5rem 0;
+  font-size: typo.$font-size-body;
+  font-weight: typo.$font-weight-semibold;
+  border-radius: 0.5rem;
+}
+
+.warn {
+  --mat-button-filled-container-color: var(--mat-sys-error, #ba1a1a);
+  --mat-button-filled-label-text-color: var(--mat-sys-on-error, #ffffff);
+}
