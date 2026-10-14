@@ -7,10 +7,10 @@ import { ButtonComponent } from '@shared/components/button/button.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterRequest } from '../../../core/models';
 import { NotificationService } from '../../../core/services/notification.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],
   selector: 'app-register',
   styleUrl: './register.scss',
   templateUrl: './register.html',
