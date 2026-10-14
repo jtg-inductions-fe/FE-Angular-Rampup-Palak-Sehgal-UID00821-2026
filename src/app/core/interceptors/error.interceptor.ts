@@ -37,17 +37,16 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       const isAuthEndpoint = req.url.includes('users/login') || req.url.includes('users/register');
-      const isUnauthorized =
-        error.status === HttpStatus.unauthorized || error.status === HttpStatus.forbidden;
+      const isUnauthorized = error.status === HttpStatus.unauthorized;
 
       if (!isAuthEndpoint && isUnauthorized) {
         notificationService.showWarning(ERROR_MESSAGES.UNAUTHORIZED);
         authService.logout();
         return throwError(() => error);
       } else if (error.status === HttpStatus.forbidden) {
-        notificationService.showWarning(ERROR_MESSAGES.FORDIDDEN);
+        notificationService.showWarning(ERROR_MESSAGES.FORBIDDEN);
+        return throwError(() => error);
       }
-
       let errorMessage = ERROR_MESSAGES.UNEXPECTED;
 
       if (error.error instanceof ErrorEvent) {
