@@ -1,0 +1,9 @@
+@if (authService.isLoggedIn()) {
+  <header class="app-header">
+    <div class="logo">Medium Pro</div>
+
+    <div class="header-actions">
+      <app-button color="warn" (click)="onLogout()">Logout</app-button>
+    </div>
+  </header>
+}

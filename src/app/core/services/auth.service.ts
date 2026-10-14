@@ -3,6 +3,7 @@ import { BaseApiService } from './base-api.service';
 import { AuthResponse, LoginRequest, RegisterRequest, User, UserProfileResponse } from '../models';
 import { TokenStorageService } from './token-storage.service';
 import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,11 @@ export class AuthService extends BaseApiService {
 
   public tokenSignal = signal<string | null>(this.tokenStorage.getToken());
   private currentUserSignal = signal<User | null>(null);
+  private router = inject(Router);
 
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isLoggedIn = computed(() => !!this.tokenSignal() && !!this.currentUserSignal());
+
   register(credentials: RegisterRequest) {
     return this.post<AuthResponse>('users/register', credentials).pipe(
       tap(response => {
@@ -43,6 +46,7 @@ export class AuthService extends BaseApiService {
     this.tokenStorage.clearToken();
     this.tokenSignal.set(null);
     this.currentUserSignal.set(null);
+    this.router.navigate(['/auth']);
   }
 
   getProfile() {
