@@ -19,7 +19,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.route').then(m => m.DASHBOARD_ROUTES),
+    loadChildren: () => import('./modules/dashboard/dashboard-module').then(m => m.DashboardModule),
   },
   {
     path: 'articles/:id',
