@@ -30,7 +30,7 @@
         placeholder="Confirm your password"
       ></app-text-input>
 
-      <app-button type="submit" [disabled]="registerForm.invalid">Sign Up</app-button>
+      <app-button type="submit" [disabled]="registerForm.invalid || isLoading">Sign Up</app-button>
     </form>
   </div>
 </div>

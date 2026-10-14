@@ -31,8 +31,14 @@ export class Login {
   get password(): FormControl {
     return this.loginForm.get('password') as FormControl;
   }
-
+  isLoading = true;
   onSubmit() {
+    if (this.isLoading) return;
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+    this.isLoading = true;
     if (this.loginForm.valid) {
       const raw = this.loginForm.getRawValue();
       const formData: LoginRequest = {
@@ -43,13 +49,13 @@ export class Login {
         next: response => {
           this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
+          this.isLoading = false;
         },
         error: () => {
+          this.isLoading = false;
           // Handled by errorInterceptor
         },
       });
-    } else {
-      this.loginForm.markAllAsTouched();
     }
   }
 }

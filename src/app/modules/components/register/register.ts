@@ -44,7 +44,14 @@ export class Register {
   get confirmPassword(): FormControl {
     return this.registerForm.get('confirmPassword') as FormControl;
   }
+  isLoading = false;
   onSubmit() {
+    if (this.isLoading) return;
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+    this.isLoading = true;
     if (this.registerForm.valid) {
       const raw = this.registerForm.getRawValue();
       const formData: RegisterRequest = {
@@ -56,13 +63,13 @@ export class Register {
         next: response => {
           this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
+          this.isLoading = false;
         },
         error: () => {
+          this.isLoading = false;
           // Handled by errorInterceptor
         },
       });
-    } else {
-      this.registerForm.markAllAsTouched();
     }
   }
 }
