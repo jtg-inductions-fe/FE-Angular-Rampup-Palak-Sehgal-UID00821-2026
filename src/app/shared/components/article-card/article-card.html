@@ -1,33 +1,33 @@
 @if (article) {
   <div class="article-card">
     <!-- Feature Image -->
-    <div class="card-image">
+    <div class="article-card__image">
       <img [src]="article.image || 'assets/default-image.jpg'" [alt]="article.title" />
     </div>
 
-    <div class="card-content">
+    <div class="article-card__content">
       <!-- Tags -->
-      <div class="tags-container">
+      <div class="article-card__tags-container">
         @for (tag of article.tags; track tag) {
-          <span class="tag">#{{ tag }}</span>
+          <span class="article-card__tag">#{{ tag }}</span>
         }
       </div>
 
       <!-- Article Title -->
-      <h3 class="title">{{ article.title }}</h3>
+      <h3 class="article-card__title">{{ article.title }}</h3>
 
       <!-- Short Description -->
-      <p class="description">{{ article.shortDescription }}</p>
+      <p class="article-card__description">{{ article.shortDescription }}</p>
 
-      <div class="card-footer">
+      <div class="article-card__footer">
         <!-- Author Name -->
-        <div class="author">
-          <span class="author-label">By:</span>
+        <div class="article-card__author">
+          <span class="article-card__author-label">By:</span>
           {{ article.author || 'Unknown' }}
         </div>
 
         <!-- Publish Date -->
-        <div class="date">
+        <div class="article-card__date">
           {{ article.createdAt | date: 'MMM d, y' }}
         </div>
       </div>

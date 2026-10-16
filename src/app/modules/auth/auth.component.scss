@@ -5,37 +5,37 @@
 @use 'base/typography' as typo;
 
 .auth {
-  &-title {
+  &__title {
     font-family: typo.$font-family-article;
     font-weight: typo.$font-weight-bold;
     color: var.$text-primary;
     margin-bottom: space.spacer(2);
     font-size: typo.$font-size-heading-1;
   }
-  &-wrapper {
+  &__wrapper {
     @include mix.flex-center;
     min-height: 100vh;
     background-color: var.$background-color;
     padding: space.spacer(4);
   }
-  &-card {
+  &__card {
     width: 100%;
     max-width: 28rem;
     @include mix.flex-column;
     align-items: center;
   }
-  &-subtitle {
+  &__subtitle {
     font-family: typo.$font-family-base;
     color: var.$text-secondary;
     margin-bottom: space.spacer(5);
     font-size: typo.$font-size-body;
   }
-  &-form {
+  &__form {
     @include mix.flex-column;
     width: 100%;
     gap: space.spacer(3);
   }
-  &-footer-text {
+  &__footer-text {
     font-family: typo.$font-family-base;
     color: var.$text-secondary;
     font-size: typo.$font-size-body;
@@ -43,7 +43,7 @@
     margin-top: space.spacer(2);
   }
 
-  &-link {
+  &__link {
     color: var.$text-primary;
     font-weight: typo.$font-weight-bold;
     text-decoration: none;

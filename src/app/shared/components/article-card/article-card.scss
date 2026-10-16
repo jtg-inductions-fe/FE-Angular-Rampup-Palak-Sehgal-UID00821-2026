@@ -20,10 +20,8 @@
     transform: translateY(-0.25rem);
     box-shadow: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.1);
   }
-}
 
-.card {
-  &-image {
+  &__image {
     height: 12.5rem;
     width: 100%;
 
@@ -32,34 +30,22 @@
       height: 100%;
       object-fit: cover;
     }
-
-    &-content {
-      padding: 1.25rem;
-      @include mix.flex-column;
-      flex-grow: 1;
-    }
   }
-  &-footer {
-    @include mix.flex-between;
-    border-top: 1px solid pallete.$gray-100;
-    padding-top: space.spacer(3);
-    font-size: typo.$font-size-small;
-    color: color.$text-secondary;
 
-    .author-label {
-      font-weight: typo.$font-weight-bold;
-      color: color.$text-primary;
-    }
+  &__content {
+    padding: 1.25rem;
+    @include mix.flex-column;
+    flex-grow: 1;
   }
-}
 
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: space.spacer(2);
-  margin-bottom: 0.75rem;
+  &__tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space.spacer(2);
+    margin-bottom: 0.75rem;
+  }
 
-  .tag {
+  &__tag {
     background: pallete.$gray-100;
     color: color.$text-secondary;
     font-size: typo.$font-size-small;
@@ -67,18 +53,31 @@
     border-radius: space.spacer(1);
     font-weight: typo.$font-weight-medium;
   }
-}
 
-.title {
-  margin: 0 0 0.625rem;
-  font-size: typo.$font-size-heading-3;
-  color: color.$text-primary;
-}
+  &__title {
+    margin: 0 0 0.625rem;
+    font-size: typo.$font-size-heading-3;
+    color: color.$text-primary;
+  }
 
-.description {
-  color: color.$text-secondary;
-  font-size: typo.$font-size-small;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;
-  flex-grow: 1;
+  &__description {
+    color: color.$text-secondary;
+    font-size: typo.$font-size-small;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  &__footer {
+    @include mix.flex-between;
+    border-top: 1px solid pallete.$gray-100;
+    padding-top: space.spacer(3);
+    font-size: typo.$font-size-small;
+    color: color.$text-secondary;
+  }
+
+  &__author-label {
+    font-weight: typo.$font-weight-bold;
+    color: color.$text-primary;
+  }
 }

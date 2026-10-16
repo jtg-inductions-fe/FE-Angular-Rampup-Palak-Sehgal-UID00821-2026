@@ -3,11 +3,11 @@
 @use 'base/typography' as typo;
 
 .dashboard {
-  &-container {
+  &__container {
     padding: space.spacer(4);
   }
 
-  &-header {
+  &__header {
     margin-bottom: space.spacer(4);
 
     h1 {

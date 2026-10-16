@@ -1,4 +1,5 @@
-<mat-form-field appearance="outline" class="form-field" subscriptSizing="dynamic">
+<!-- class "form-field" ko "text-input__field" kar diya -->
+<mat-form-field appearance="outline" class="text-input__field" subscriptSizing="dynamic">
   <mat-label>{{ label }}</mat-label>
 
   <input
@@ -9,8 +10,17 @@
   />
 
   @if (isPassword) {
-    <button mat-icon-button matSuffix type="button" (click)="togglePassword($event)">
-      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    <!-- Button aur icon ko proper BEM classes de di hain -->
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      class="text-input__toggle-btn"
+      (click)="togglePassword($event)"
+    >
+      <mat-icon class="text-input__icon">
+        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+      </mat-icon>
     </button>
   }
 

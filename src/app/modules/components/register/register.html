@@ -1,9 +1,9 @@
-<div class="auth-wrapper">
-  <div class="auth-card">
-    <h1 class="auth-title">Join Medium Pro</h1>
-    <p class="auth-subtitle">Create an account to start writing.</p>
+<div class="auth__wrapper">
+  <div class="auth__card">
+    <h1 class="auth__title">Join Medium Pro</h1>
+    <p class="auth__subtitle">Create an account to start writing.</p>
 
-    <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form class="auth__form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <!-- Username Field -->
       <app-text-input
         label="Username"
@@ -31,9 +31,9 @@
       ></app-text-input>
 
       <app-button type="submit" [disabled]="registerForm.invalid || isLoading">Sign Up</app-button>
-      <p class="auth-footer-text">
+      <p class="auth__footer-text">
         Already have an account?
-        <a routerLink="/auth/login" class="auth-link">Login</a>
+        <a routerLink="/auth/login" class="auth__link">Login</a>
       </p>
     </form>
   </div>
