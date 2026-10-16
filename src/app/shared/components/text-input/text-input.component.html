@@ -3,9 +3,9 @@
 
   <input
     matInput
+    type="isPassword ? (hidePassword ? 'password' : 'text') : type"
+    placeholder="placeholder"
     [formControl]="control"
-    [type]="isPassword ? (hidePassword ? 'password' : 'text') : type"
-    [placeholder]="placeholder"
   />
 
   @if (isPassword) {
