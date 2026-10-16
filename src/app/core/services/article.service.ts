@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { BaseApiService } from './base-api.service';
 
@@ -8,6 +8,7 @@ import {
   Article,
   ArticleListResponse,
   ArticleQueryParams,
+  ArticleResponse,
   CreateArticleRequest,
 } from '@core/models';
 
@@ -19,7 +20,9 @@ export class ArticleService extends BaseApiService {
 
   //get article whose id is passed
   getArticleById(id: string): Observable<Article> {
-    return this.get<Article>(`${this.endpoint}/${id}`);
+    return this.get<ArticleResponse>(`${this.endpoint}/${id}`).pipe(
+      map(response => response.data as Article)
+    );
   }
   // list of articles
   getArticles(params?: ArticleQueryParams): Observable<ArticleListResponse> {
