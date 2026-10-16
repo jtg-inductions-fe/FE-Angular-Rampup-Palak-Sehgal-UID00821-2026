@@ -1,9 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmDialogData } from '@core/models';
-import { Observable } from 'rxjs';
-import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+
+import { Observable } from 'rxjs';
+
+import { ConfirmDialogData } from '@core/models';
+import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
+
 @Injectable({
   providedIn: 'root',
 })

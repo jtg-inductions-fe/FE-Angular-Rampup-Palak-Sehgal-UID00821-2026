@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+
 import { AUTH_FORM_RULES } from '@modules/auth/validators/auth-form.rules';
 import { passwordMatchValidator } from '@modules/auth/validators/match-password.validator';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { AuthService } from '../../../core/services/auth.service';
-import { RegisterRequest } from '../../../core/models';
-import { NotificationService } from '../../../core/services/notification.service';
-import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '@core/services/auth.service';
+import { RegisterRequest } from '@core/models';
+import { NotificationService } from '@core/services/notification.service';
 
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],

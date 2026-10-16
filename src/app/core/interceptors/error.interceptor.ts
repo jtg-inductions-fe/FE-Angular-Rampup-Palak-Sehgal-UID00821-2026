@@ -1,6 +1,8 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+
 import { catchError, throwError } from 'rxjs';
+
 import { AuthService } from '@core/services/auth.service';
 import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
 import { HttpStatus } from '@shared/constants/http-status.enum';

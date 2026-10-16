@@ -1,4 +1,5 @@
 import { ErrorHandler, inject, Injectable, NgZone } from '@angular/core';
+
 import { NotificationService } from '@core/services/notification.service';
 import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
 import { isHttpError } from '@src/app/core/utils/error.utils';

@@ -1,4 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { tap } from 'rxjs';
+
 import { BaseApiService } from './base-api.service';
 import {
   AuthResponse,
@@ -8,8 +12,6 @@ import {
   UserProfileResponse,
 } from '@core/models';
 import { TokenStorageService } from './token-storage.service';
-import { tap } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
