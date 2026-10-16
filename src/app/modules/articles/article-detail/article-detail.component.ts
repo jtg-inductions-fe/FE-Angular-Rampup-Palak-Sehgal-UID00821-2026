@@ -8,11 +8,11 @@ import { Observable, switchMap } from 'rxjs';
 
 import { ArticleService } from '@core/services/article.service';
 import { Article } from '@core/models';
-
+import { ArticleTagComponent } from '@src/app/shared/components/article-tag/article-tag';
 @Component({
   selector: 'app-article-detail',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, RouterLink, MatButtonModule, MatIconModule],
+  imports: [AsyncPipe, DatePipe, RouterLink, MatButtonModule, MatIconModule, ArticleTagComponent],
   templateUrl: './article-detail.component.html',
   styleUrl: './article-detail.component.scss',
 })

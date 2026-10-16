@@ -13,7 +13,7 @@
         <!-- Tags -->
         <div class="article-detail__tags">
           @for (tag of article.tags; track tag) {
-            <span class="article-detail__tag">#{{ tag }}</span>
+            <app-article-tag [tag]="tag"></app-article-tag>
           }
         </div>
 

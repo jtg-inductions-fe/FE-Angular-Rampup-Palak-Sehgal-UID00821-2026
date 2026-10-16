@@ -18,22 +18,6 @@
     gap: space.spacer(4);
   }
 
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: space.spacer(2);
-    margin-bottom: space.spacer(2);
-  }
-
-  &__tag {
-    background-color: pallete.$gray-100;
-    color: color.$text-secondary;
-    font-size: typo.$font-size-small;
-    padding: space.spacer(1) space.spacer(2);
-    border-radius: space.spacer(1);
-    font-weight: typo.$font-weight-medium;
-  }
-
   &__title {
     font-size: typo.$font-size-heading-1;
     color: color.$text-primary;
