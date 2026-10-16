@@ -12,6 +12,10 @@
       <!-- Password Field -->
       <app-text-input label="Password" [control]="password" [isPassword]="true"></app-text-input>
       <app-button type="submit" [disabled]="loginForm.invalid">Log In</app-button>
+      <p class="auth-footer-text">
+        Don't have an account?
+        <a routerLink="/auth/register" class="auth-link">Sign Up</a>
+      </p>
     </form>
   </div>
 </div>

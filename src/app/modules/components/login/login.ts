@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
@@ -9,7 +9,7 @@ import { AuthService } from '@core/services/auth.service';
 import { NotificationService } from '@core/services/notification.service';
 
 @Component({
-  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],
   selector: 'app-login',
   styleUrl: '../../auth/auth.component.scss',
   templateUrl: './login.html',

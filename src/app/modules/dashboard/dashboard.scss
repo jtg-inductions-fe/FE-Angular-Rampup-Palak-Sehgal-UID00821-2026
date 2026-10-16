@@ -2,17 +2,19 @@
 @use 'abstracts/spacing' as space;
 @use 'base/typography' as typo;
 
-.dashboard-container {
-  padding: space.spacer(4);
-}
+.dashboard {
+  &-container {
+    padding: space.spacer(4);
+  }
 
-.dashboard-header {
-  margin-bottom: space.spacer(4);
+  &-header {
+    margin-bottom: space.spacer(4);
 
-  h1 {
-    color: color.$text-primary;
-    font-size: typo.$font-size-heading-2;
-    margin: 0;
+    h1 {
+      color: color.$text-primary;
+      font-size: typo.$font-size-heading-2;
+      margin: 0;
+    }
   }
 }
 
