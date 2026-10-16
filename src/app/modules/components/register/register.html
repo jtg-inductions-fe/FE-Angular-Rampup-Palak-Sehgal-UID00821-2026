@@ -30,7 +30,11 @@
         [isPassword]="true"
       ></app-text-input>
 
-      <app-button type="submit" [disabled]="registerForm.invalid">Sign Up</app-button>
+      <app-button type="submit" [disabled]="registerForm.invalid || isLoading">Sign Up</app-button>
+      <p class="auth-footer-text">
+        Already have an account?
+        <a routerLink="/auth/login" class="auth-link">Login</a>
+      </p>
     </form>
   </div>
 </div>

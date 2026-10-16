@@ -1,17 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { AUTH_FORM_RULES } from '@modules/auth/validators/auth-form.rules';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { LoginRequest } from '@core/models';
-import { AuthService } from '@core/services/auth.service';
+import { LoginRequest } from '../../../core/models';
+import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { NotificationService } from '@core/services/notification.service';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent],
   selector: 'app-login',
-  styleUrl: './login.scss',
+  styleUrl: '../../auth/auth.component.scss',
   templateUrl: './login.html',
 })
 export class Login {
@@ -21,8 +20,8 @@ export class Login {
   private notificationService = inject(NotificationService);
 
   loginForm = this.fb.nonNullable.group({
-    username: ['', AUTH_FORM_RULES.username],
-    password: ['', AUTH_FORM_RULES.password],
+    username: ['', Validators.required],
+    password: ['', Validators.required],
   });
   get username(): FormControl {
     return this.loginForm.get('username') as FormControl;
@@ -31,8 +30,14 @@ export class Login {
   get password(): FormControl {
     return this.loginForm.get('password') as FormControl;
   }
-
+  isLoading = false;
   onSubmit() {
+    if (this.isLoading) return;
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+    this.isLoading = true;
     if (this.loginForm.valid) {
       const raw = this.loginForm.getRawValue();
       const formData: LoginRequest = {
@@ -43,13 +48,13 @@ export class Login {
         next: response => {
           this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
+          this.isLoading = false;
         },
         error: () => {
+          this.isLoading = false;
           // Handled by errorInterceptor
         },
       });
-    } else {
-      this.loginForm.markAllAsTouched();
     }
   }
 }

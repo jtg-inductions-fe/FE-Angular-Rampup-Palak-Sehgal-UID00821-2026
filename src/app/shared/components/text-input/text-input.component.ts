@@ -49,6 +49,10 @@ export class TextInputComponent {
       const min = this.control.getError('minlength')?.requiredLength;
       return `Minimum ${min} characters required.`;
     }
+    if (this.control.hasError('maxlength')) {
+      const max = this.control.getError('maxlength')?.requiredLength;
+      return `Maximum ${max} characters are allowed.`;
+    }
     if (this.control.hasError('weakPassword')) {
       return `Must contain at least 2 numbers and 2 special characters.`;
     }

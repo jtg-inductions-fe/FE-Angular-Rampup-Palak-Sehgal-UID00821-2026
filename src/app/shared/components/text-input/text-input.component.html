@@ -3,8 +3,8 @@
 
   <input
     matInput
-    type="isPassword ? (hidePassword ? 'password' : 'text') : type"
-    placeholder="placeholder"
+    [type]="isPassword ? (hidePassword ? 'password' : 'text') : type"
+    [placeholder]="placeholder"
     [formControl]="control"
   />
 

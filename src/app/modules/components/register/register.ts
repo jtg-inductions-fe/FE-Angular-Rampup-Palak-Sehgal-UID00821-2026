@@ -4,15 +4,15 @@ import { AUTH_FORM_RULES } from '@modules/auth/validators/auth-form.rules';
 import { passwordMatchValidator } from '@modules/auth/validators/match-password.validator';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { AuthService } from '@core/services/auth.service';
-import { RegisterRequest } from '@core/models';
-import { NotificationService } from '@core/services/notification.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
+import { RegisterRequest } from '../../../core/models';
+import { NotificationService } from '../../../core/services/notification.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],
   selector: 'app-register',
-  styleUrl: './register.scss',
+  styleUrl: '../../auth/auth.component.scss',
   templateUrl: './register.html',
 })
 export class Register {
@@ -44,7 +44,14 @@ export class Register {
   get confirmPassword(): FormControl {
     return this.registerForm.get('confirmPassword') as FormControl;
   }
+  isLoading = false;
   onSubmit() {
+    if (this.isLoading) return;
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+    this.isLoading = true;
     if (this.registerForm.valid) {
       const raw = this.registerForm.getRawValue();
       const formData: RegisterRequest = {
@@ -56,13 +63,13 @@ export class Register {
         next: response => {
           this.notificationService.showSuccess(response.message);
           this.router.navigate(['/']);
+          this.isLoading = false;
         },
         error: () => {
+          this.isLoading = false;
           // Handled by errorInterceptor
         },
       });
-    } else {
-      this.registerForm.markAllAsTouched();
     }
   }
 }
