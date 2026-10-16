@@ -9,7 +9,7 @@
       <!-- Tags -->
       <div class="article-card__tags-container">
         @for (tag of article.tags; track tag) {
-          <span class="article-card__tag">#{{ tag }}</span>
+          <app-article-tag [tag]="tag"></app-article-tag>
         }
       </div>
 

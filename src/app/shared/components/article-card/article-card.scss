@@ -38,22 +38,6 @@
     flex-grow: 1;
   }
 
-  &__tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: space.spacer(2);
-    margin-bottom: 0.75rem;
-  }
-
-  &__tag {
-    background: pallete.$gray-100;
-    color: color.$text-secondary;
-    font-size: typo.$font-size-small;
-    padding: space.spacer(1) space.spacer(2);
-    border-radius: space.spacer(1);
-    font-weight: typo.$font-weight-medium;
-  }
-
   &__title {
     margin: 0 0 0.625rem;
     font-size: typo.$font-size-heading-3;
