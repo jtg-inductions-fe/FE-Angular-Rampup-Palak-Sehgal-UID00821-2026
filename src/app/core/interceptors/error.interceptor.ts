@@ -5,30 +5,7 @@ import { AuthService } from '@core/services/auth.service';
 import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
 import { HttpStatus } from '@shared/constants/http-status.enum';
 import { NotificationService } from '@core/services/notification.service';
-
-function extractMessage(item: unknown): string | null {
-  if (!item) return null;
-  if (typeof item === 'string') return item;
-
-  if (Array.isArray(item)) {
-    const msgs = item.map(extractMessage).filter(Boolean);
-    return msgs.length > 0 ? msgs.join(', ') : null;
-  }
-
-  if (typeof item === 'object') {
-    const obj = item as Record<string, unknown>;
-
-    if (typeof obj['msg'] === 'string') return obj['msg'];
-    if (typeof obj['message'] === 'string' && obj['message'] !== 'Validation failed') {
-      return obj['message'];
-    }
-
-    const values = Object.values(obj).map(extractMessage).filter(Boolean);
-    return values.length > 0 ? values.join(', ') : null;
-  }
-
-  return null;
-}
+import { extractMessage } from '@core/utils/error.utils';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
