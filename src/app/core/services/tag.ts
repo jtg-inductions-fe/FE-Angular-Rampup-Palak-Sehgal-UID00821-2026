@@ -3,7 +3,7 @@ import { Service } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseApiService } from './base-api.service';
-import { CreateTagRequest } from '@core/models';
+import { Tag as TagModel, CreateTagRequest } from '@core/models';
 
 @Service()
 export class Tag extends BaseApiService {
@@ -13,7 +13,7 @@ export class Tag extends BaseApiService {
     return this.get<string[]>(this.endpoint);
   }
   //   create tag
-  createTag(payload: CreateTagRequest): Observable<Tag> {
-    return this.post<Tag>(this.endpoint, payload);
+  createTag(payload: CreateTagRequest): Observable<TagModel> {
+    return this.post<TagModel>(this.endpoint, payload);
   }
 }
