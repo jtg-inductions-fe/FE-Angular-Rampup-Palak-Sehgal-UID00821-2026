@@ -1,0 +1,40 @@
+@if (article) {
+  <div class="article-card">
+    <!-- Feature Image -->
+    <div class="article-card__image">
+      <img [src]="article.image || 'assets/default-image.jpg'" [alt]="article.title" />
+    </div>
+
+    <div class="article-card__content">
+      <!-- Tags -->
+      <div class="article-card__tags-container">
+        @for (tag of article.tags; track tag) {
+          <app-article-tag [tag]="tag"></app-article-tag>
+        }
+      </div>
+
+      <!-- Article Title -->
+      <h3 class="article-card__title">
+        <a class="article-card__title-link" [routerLink]="['/articles', article.id]">
+          {{ article.title }}
+        </a>
+      </h3>
+
+      <!-- Short Description -->
+      <p class="article-card__description">{{ article.shortDescription }}</p>
+
+      <div class="article-card__footer">
+        <!-- Author Name -->
+        <div class="article-card__author">
+          <span class="article-card__author-label">By:</span>
+          {{ article.author || 'Unknown' }}
+        </div>
+
+        <!-- Publish Date -->
+        <div class="article-card__date">
+          {{ article.createdAt | date: 'MMM d, y' }}
+        </div>
+      </div>
+    </div>
+  </div>
+}

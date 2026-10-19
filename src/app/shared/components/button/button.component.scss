@@ -15,8 +15,3 @@
   font-weight: typo.$font-weight-semibold;
   border-radius: 0.5rem;
 }
-
-.warn {
-  --mat-button-filled-container-color: var(--mat-sys-error, #ba1a1a);
-  --mat-button-filled-label-text-color: var(--mat-sys-on-error, #ffffff);
-}

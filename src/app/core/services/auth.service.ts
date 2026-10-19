@@ -1,9 +1,17 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { BaseApiService } from './base-api.service';
-import { AuthResponse, LoginRequest, RegisterRequest, User, UserProfileResponse } from '../models';
-import { TokenStorageService } from './token-storage.service';
-import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { tap } from 'rxjs';
+
+import { BaseApiService } from './base-api.service';
+import {
+  AuthResponse,
+  LoginRequest,
+  RegisterRequest,
+  User,
+  UserProfileResponse,
+} from '@core/models';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root',

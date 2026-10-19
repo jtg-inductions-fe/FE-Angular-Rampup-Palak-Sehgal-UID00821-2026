@@ -1,5 +1,6 @@
 import { AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { REGEX, VALIDATION_RULES } from '../../../shared/constants/regex.constants';
+
+import { REGEX, VALIDATION_RULES } from '@shared/constants/regex.constants';
 
 export function customPasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {

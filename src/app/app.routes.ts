@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
+
 import { authGuard } from './core/guards/auth-guard';
 import { guestGuard } from './core/guards/guest-guard';
 import { articleResolver } from './core/resolvers/article.resolver';
@@ -19,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.route').then(m => m.DASHBOARD_ROUTES),
+    loadChildren: () => import('./modules/dashboard/dashboard-module').then(m => m.DashboardModule),
   },
   {
     path: 'articles/:id',

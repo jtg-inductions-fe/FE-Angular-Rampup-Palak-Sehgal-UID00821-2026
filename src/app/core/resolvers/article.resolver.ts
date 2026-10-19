@@ -1,7 +1,9 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
+
 import { catchError, of } from 'rxjs';
-import { ArticleService } from '../services/article-service';
+
+import { ArticleService } from '@core/services/article.service';
 
 export const articleResolver: ResolveFn<unknown> = route => {
   const articleService = inject(ArticleService);

@@ -1,20 +1,20 @@
-<div class="auth-wrapper">
-  <div class="auth-card">
-    <h1 class="auth-title">Login</h1>
-    <p class="auth-subtitle">Access to all the amazing articles</p>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+<div class="auth__wrapper">
+  <div class="auth__card">
+    <h1 class="auth__title">Login</h1>
+    <p class="auth__subtitle">Access to all the amazing articles</p>
+    <form class="auth__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Username -->
       <app-text-input
-        [control]="username"
         label="Username"
         placeholder="Enter your username"
+        [control]="username"
       ></app-text-input>
       <!-- Password Field -->
-      <app-text-input [control]="password" label="Password" [isPassword]="true"></app-text-input>
+      <app-text-input label="Password" [control]="password" [isPassword]="true"></app-text-input>
       <app-button type="submit" [disabled]="loginForm.invalid || isLoading">Log In</app-button>
-      <p class="auth-footer-text">
+      <p class="auth__footer-text">
         Don't have an account?
-        <a routerLink="/auth/register" class="auth-link">Sign Up</a>
+        <a routerLink="/auth/register" class="auth__link">Sign Up</a>
       </p>
     </form>
   </div>

@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { QueryParams } from '../models';
-import { environment } from '../../../environments/environment';
+
+import { QueryParams } from '@core/models';
+import { environment } from '@src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

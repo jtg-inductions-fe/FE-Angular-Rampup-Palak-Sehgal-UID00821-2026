@@ -1,0 +1,55 @@
+<div class="article-detail">
+  <!-- Back Button Navigation -->
+  <div class="article-detail__nav">
+    <a mat-button routerLink="/dashboard">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Dashboard
+    </a>
+  </div>
+
+  @if (article$ | async; as article) {
+    <article class="article-detail__container">
+      <header class="article-detail__header">
+        <!-- Tags -->
+        <div class="article-detail__tags">
+          @for (tag of article.tags; track tag) {
+            <app-article-tag [tag]="tag"></app-article-tag>
+          }
+        </div>
+
+        <!-- Title -->
+        <h1 class="article-detail__title">{{ article.title }}</h1>
+
+        <!-- Metadata: Author & Date -->
+        <div class="article-detail__meta">
+          <div class="article-detail__author">
+            <span class="article-detail__author-label">Written by:</span>
+            {{ article.author || 'Unknown' }}
+          </div>
+          <time class="article-detail__date">
+            {{ article.createdAt | date: 'MMM d, y' }}
+          </time>
+        </div>
+      </header>
+
+      <!-- Feature Image -->
+      @if (article.image) {
+        <div class="article-detail__image-container">
+          <img class="article-detail__image" [src]="article.image" [alt]="article.title" />
+        </div>
+      }
+
+      <!-- Article Body -->
+      <section class="article-detail__body">
+        <p class="article-detail__description">{{ article.shortDescription }}</p>
+        <div class="article-detail__content">
+          {{ article.description }}
+        </div>
+      </section>
+    </article>
+  } @else {
+    <div class="article-detail__loading">
+      <p>Loading article...</p>
+    </div>
+  }
+</div>
