@@ -14,8 +14,10 @@
       </div>
 
       <!-- Article Title -->
-      <h3 [routerLink]="['/articles', article.id]" class="article-card__title">
-        {{ article.title }}
+      <h3 class="article-card__title">
+        <a class="article-card__title-link" [routerLink]="['/articles', article.id]">
+          {{ article.title }}
+        </a>
       </h3>
 
       <!-- Short Description -->
