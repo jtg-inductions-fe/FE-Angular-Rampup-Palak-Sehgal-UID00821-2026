@@ -14,31 +14,9 @@ export class NotificationService {
   private dialog = inject(MatDialog);
 
   private snackBar = inject(MatSnackBar);
-  showSuccess(message: string): void {
+  showNotification(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
-  }
-
-  showError(message: string): void {
-    this.snackBar.open(message, 'Close', {
-      duration: 5000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
-  }
-  showWarning(message: string): void {
-    this.snackBar.open(message, 'Close', {
-      duration: 4000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    });
-  }
-  showInfo(message: string): void {
-    this.snackBar.open(message, 'Close', {
-      duration: 4000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });

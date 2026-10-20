@@ -12,15 +12,10 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: unknown): void {
     if (isHttpError(error)) return;
 
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : typeof error === 'string'
-          ? error
-          : ERROR_MESSAGES.UNEXPECTED;
+    const errorMessage = error instanceof Error ? error.message : typeof error === 'string' ? error : ERROR_MESSAGES.UNEXPECTED;
 
     this.zone.run(() => {
-      this.notificationService.showError(`App Error: ${errorMessage}`);
+      this.notificationService.showNotification(`App Error: ${errorMessage}`);
     });
   }
 }

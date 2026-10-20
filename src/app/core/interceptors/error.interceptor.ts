@@ -19,11 +19,11 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       const isUnauthorized = error.status === HttpStatus.unauthorized;
 
       if (!isAuthEndpoint && isUnauthorized) {
-        notificationService.showWarning(ERROR_MESSAGES.UNAUTHORIZED);
+        notificationService.showNotification(ERROR_MESSAGES.UNAUTHORIZED);
         authService.logout();
         return throwError(() => error);
       } else if (error.status === HttpStatus.forbidden) {
-        notificationService.showWarning(ERROR_MESSAGES.FORBIDDEN);
+        notificationService.showNotification(ERROR_MESSAGES.FORBIDDEN);
         return throwError(() => error);
       }
       let errorMessage = ERROR_MESSAGES.UNEXPECTED;
@@ -42,16 +42,14 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         } else if (typeof apiError === 'object' && apiError !== null) {
           const obj = apiError as Record<string, unknown>;
           const parsedMsg =
-            extractMessage(obj['error']) ||
-            extractMessage(obj['errors']) ||
-            (typeof obj['message'] === 'string' ? obj['message'] : null);
+            extractMessage(obj['error']) || extractMessage(obj['errors']) || (typeof obj['message'] === 'string' ? obj['message'] : null);
 
           if (parsedMsg) errorMessage = parsedMsg;
         }
       } else if (error.message) {
         errorMessage = error.message;
       }
-      notificationService.showError(errorMessage);
+      notificationService.showNotification(errorMessage);
 
       return throwError(() => error);
     })

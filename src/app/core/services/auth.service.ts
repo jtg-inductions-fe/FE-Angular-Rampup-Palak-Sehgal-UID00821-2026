@@ -4,13 +4,7 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 
 import { BaseApiService } from './base-api.service';
-import {
-  AuthResponse,
-  LoginRequest,
-  RegisterRequest,
-  User,
-  UserProfileResponse,
-} from '@core/models';
+import { AuthResponse, LoginRequest, RegisterRequest, User, UserProfileResponse } from '@core/models';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
@@ -37,6 +31,7 @@ export class AuthService extends BaseApiService {
       })
     );
   }
+
   login(credentials: LoginRequest) {
     return this.post<AuthResponse>('users/login', credentials).pipe(
       tap(response => {

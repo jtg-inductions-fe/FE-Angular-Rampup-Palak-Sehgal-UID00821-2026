@@ -47,7 +47,7 @@ export class Login {
       };
       this.authService.login(formData).subscribe({
         next: response => {
-          this.notificationService.showSuccess(response.message);
+          this.notificationService.showNotification(response.message);
           this.router.navigate(['/']);
           this.isLoading = false;
         },

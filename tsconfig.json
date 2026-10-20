@@ -3,16 +3,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
+    "noImplicitOverride": true, //use override keyword everywhere
+    "noPropertyAccessFromIndexSignature": true, //obj['key'] notation not obj.key
+    "noImplicitReturns": true, //return value from every path of function
+    "noFallthroughCasesInSwitch": true, //writing break/return is mandatory
+    "skipLibCheck": true, //skips type checking of .d.ts files
     "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve",
+    "experimentalDecorators": true, //can use decorators like @components,@injectable
+    "importHelpers": true, //import tslib helpers not paste the whole helper function
+    "target": "ES2022", //ECMAScript 2022
+    "module": "preserve", //automatic resolution
     "paths": {
       "@src/*": ["./src/*"],
       "@modules/*": ["./src/app/modules/*"],
@@ -23,7 +23,7 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true
+    "strictInputAccessModifiers": true //readonly or private in @Input properties
   },
   "files": [],
   "references": [

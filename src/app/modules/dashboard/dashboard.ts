@@ -21,7 +21,7 @@ export class Dashboard implements OnInit {
     this.articles$ = this.articleService.getArticles().pipe(
       map((response: ArticleListResponse) => response.data?.data || []),
       catchError(error => {
-        this.notificationService.showError(error);
+        this.notificationService.showNotification(error);
         this.isLoading = false;
         return EMPTY;
       })

@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- **Node.js**: Version 20+. You can download and install it from https://nodejs.org/en
+- **Node.js**: Version 24.21.0. You can download and install it from https://nodejs.org/en
 - **npm**: Node.js package manager, which comes bundled with Node.js.
 
 ### Installing
@@ -17,7 +17,7 @@ To set up the project on your local environment, follow these steps:
    - **HTTPS:** `https://github.com/jtg-inductions-fe/FE-Angular-Rampup-Palak-Sehgal-UID00821-2026.git`
    - **SSH:** `git@github.com:jtg-inductions-fe/FE-Angular-Rampup-Palak-Sehgal-UID00821-2026.git`
 
-2. **nvm (Node Version Manager)**: If the required Node version 20+ is already installed and active, you can skip this step else you can use nvm (Node Version Manager). Here's how to use it:
+2. **nvm (Node Version Manager)**: If the required Node version 24.21.0 is already installed and active, you can skip this step else you can use nvm (Node Version Manager). Here's how to use it:
 
    - **Switch Node Version**: If the required Node version is already installed, run:
 
@@ -32,7 +32,7 @@ To set up the project on your local environment, follow these steps:
 
    > **_Tip:_** If you don't have nvm installed, you can install it by following the instructions on [nvm-sh/nvm](https://github.com/nvm-sh/nvm).
 
-   Alternatively, you can update Node.js directly by downloading the latest version from the official website: nodejs.org.
+   Alternatively, you can update Node.js directly by downloading the latest version from the official website: [nodejs.org](https://nodejs.org./en).
 
 3. **Install the necessary dependencies using npm**
 
@@ -42,7 +42,7 @@ To set up the project on your local environment, follow these steps:
    npm ci
    ```
 
-   Alternatively, you can run npm install
+   Alternatively, you can run `npm install`
 
 4. Run the Development Server
 
@@ -55,10 +55,9 @@ To set up the project on your local environment, follow these steps:
    NOTE: The preferred way to change the development server's port number is by running:
 
    ```bash
-   ng serve --port <New Port>
-   ```
+   npm start -- --port <New Port>
 
-   Alternatively, you can modify the default port directly under architect.serve.options.port in angular.json at the root level of the project.
+   ```
 
 5. Build the Project
 
@@ -70,9 +69,9 @@ To set up the project on your local environment, follow these steps:
 
 6. Lint the Code
 
-```bash
-npm run lint
-```
+   ```bash
+   npm run lint
+   ```
 
 This command will scan the project and check for any lint errors using ESLint.
 
@@ -92,13 +91,13 @@ This command will scan the project and check for any lint errors using ESLint.
 
    This command will automatically format all files using Prettier.
 
-9. Run Unit Tests
+9. Generate API Documentation
 
    ```bash
-   npm test
+   npm run docs
    ```
 
-   This command will execute unit tests using the configured test runner.
+Generates code documentation in the docs/ folder using TypeDoc.
 
 ## Environments
 
