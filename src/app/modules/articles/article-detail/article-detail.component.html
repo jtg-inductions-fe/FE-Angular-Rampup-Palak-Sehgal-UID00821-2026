@@ -39,9 +39,9 @@
             <img class="article-detail__image" [src]="state.article.image" [alt]="state.article.title" />
           </div>
         }
-
+        <span class="read-time">{{ state.article.description | readingTime }}</span>
         <section class="article-detail__body">
-          <p class="article-detail__description">{{ state.article.shortDescription }}</p>
+          <p class="article-detail__description">{{ state.article.shortDescription | truncate: 100 }}</p>
           <div class="article-detail__content">
             {{ state.article.description }}
           </div>

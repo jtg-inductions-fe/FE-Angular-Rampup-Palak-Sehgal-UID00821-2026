@@ -3,6 +3,8 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { TruncatePipe } from '@src/app/shared/pipe/truncate-pipe';
+import { ReadingTimePipe } from '@src/app/shared/pipe/reading-time-pipe';
 
 import { map, Observable, startWith } from 'rxjs';
 
@@ -11,7 +13,7 @@ import { ArticleTagComponent } from '@src/app/shared/components/article-tag/arti
 @Component({
   selector: 'app-article-detail',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, RouterLink, MatButtonModule, MatIconModule, ArticleTagComponent],
+  imports: [AsyncPipe, DatePipe, RouterLink, MatButtonModule, MatIconModule, ArticleTagComponent, TruncatePipe, ReadingTimePipe],
   templateUrl: './article-detail.component.html',
   styleUrl: './article-detail.component.scss',
 })
