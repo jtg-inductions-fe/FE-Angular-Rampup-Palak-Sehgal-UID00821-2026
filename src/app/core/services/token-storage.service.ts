@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import { NotificationService } from './notification.service';
 
@@ -9,9 +10,12 @@ const TOKEN_KEY = 'auth-token';
 })
 export class TokenStorageService {
   private notificationService = inject(NotificationService);
+  private document = inject(DOCUMENT);
+  private localStorage = this.document.defaultView?.localStorage;
+
   public saveToken(token: string): void {
     try {
-      window.localStorage.setItem(TOKEN_KEY, token);
+      this.localStorage?.setItem(TOKEN_KEY, token);
     } catch (error) {
       this.notificationService.showNotification(`Storage blocked: Cannot save token: ${error}`);
     }
@@ -19,7 +23,7 @@ export class TokenStorageService {
 
   public getToken(): string | null {
     try {
-      return window.localStorage.getItem(TOKEN_KEY);
+      return this.localStorage?.getItem(TOKEN_KEY) ?? null;
     } catch (error) {
       console.warn(error);
       return null;
@@ -28,7 +32,7 @@ export class TokenStorageService {
 
   public clearToken(): void {
     try {
-      window.localStorage.removeItem(TOKEN_KEY);
+      this.localStorage?.removeItem(TOKEN_KEY);
     } catch (error) {
       this.notificationService.showNotification(`Storage blocked: Cannot clear token: ${error}`);
     }

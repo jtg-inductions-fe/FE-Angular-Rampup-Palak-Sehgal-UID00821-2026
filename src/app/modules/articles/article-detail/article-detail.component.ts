@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { map, Observable } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 
 import { Article } from '@core/models';
 import { ArticleTagComponent } from '@src/app/shared/components/article-tag/article-tag';
@@ -18,9 +18,17 @@ import { ArticleTagComponent } from '@src/app/shared/components/article-tag/arti
 export class ArticleDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
-  article$!: Observable<Article>;
+  articleState$!: Observable<{ isLoading: boolean; article: Article | null }>;
+  isLoading = true;
 
   ngOnInit(): void {
-    this.article$ = this.route.data.pipe(map(data => data['articleData']));
+    this.articleState$ = this.route.data.pipe(
+      map(data => ({
+        isLoading: false,
+        article: data['articleData'],
+      })),
+      startWith({ isLoading: true, article: null })
+    );
+    this.isLoading = false;
   }
 }

@@ -6,50 +6,51 @@
       Back to Dashboard
     </a>
   </div>
-
-  @if (article$ | async; as article) {
-    <article class="article-detail__container">
-      <header class="article-detail__header">
-        <!-- Tags -->
-        <div class="article-detail__tags">
-          @for (tag of article.tags; track tag) {
-            <app-article-tag [tag]="tag"></app-article-tag>
-          }
-        </div>
-
-        <!-- Title -->
-        <h1 class="article-detail__title">{{ article.title }}</h1>
-
-        <!-- Metadata: Author & Date -->
-        <div class="article-detail__meta">
-          <div class="article-detail__author">
-            <span class="article-detail__author-label">Written by:</span>
-            {{ article.author || 'Unknown' }}
+  @if (articleState$ | async; as state) {
+    @if (state.isLoading) {
+      <div class="article-detail__loading">
+        <p>Loading article...</p>
+      </div>
+    }
+    @if (state.article) {
+      <article class="article-detail__container">
+        <header class="article-detail__header">
+          <div class="article-detail__tags">
+            @for (tag of state.article.tags; track tag) {
+              <app-article-tag [tag]="tag"></app-article-tag>
+            }
           </div>
-          <time class="article-detail__date">
-            {{ article.createdAt | date: 'MMM d, y' }}
-          </time>
-        </div>
-      </header>
 
-      <!-- Feature Image -->
-      @if (article.image) {
-        <div class="article-detail__image-container">
-          <img class="article-detail__image" [src]="article.image" [alt]="article.title" />
-        </div>
-      }
+          <h1 class="article-detail__title">{{ state.article.title }}</h1>
 
-      <!-- Article Body -->
-      <section class="article-detail__body">
-        <p class="article-detail__description">{{ article.shortDescription }}</p>
-        <div class="article-detail__content">
-          {{ article.description }}
-        </div>
-      </section>
-    </article>
-  } @else {
-    <div class="article-detail__loading">
-      <p>Loading article...</p>
-    </div>
+          <div class="article-detail__meta">
+            <div class="article-detail__author">
+              <span class="article-detail__author-label">Written by:</span>
+              {{ state.article.author || 'Unknown' }}
+            </div>
+            <time class="article-detail__date">
+              {{ state.article.createdAt | date: 'MMM d, y' }}
+            </time>
+          </div>
+        </header>
+
+        @if (state.article.image) {
+          <div class="article-detail__image-container">
+            <img class="article-detail__image" [src]="state.article.image" [alt]="state.article.title" />
+          </div>
+        }
+
+        <section class="article-detail__body">
+          <p class="article-detail__description">{{ state.article.shortDescription }}</p>
+          <div class="article-detail__content">
+            {{ state.article.description }}
+          </div>
+        </section>
+      </article>
+    } @else {
+      <div class="article-detail__loading">
+        <p>Article not found!</p>
+      </div>
+    }
   }
 </div>
