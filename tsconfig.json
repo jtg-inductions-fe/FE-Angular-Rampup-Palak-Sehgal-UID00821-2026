@@ -21,9 +21,9 @@
     }
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true //readonly or private in @Input properties
+    "enableI18nLegacyMessageIdFormat": false, //convert website to diff languages; rejects legacy methods and allows new ones
+    "strictInjectionParameters": true, // correct types are given to service injections not any
+    "strictInputAccessModifiers": true //not readonly or private in @Input properties
   },
   "files": [],
   "references": [

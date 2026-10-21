@@ -10,5 +10,5 @@ import { HeaderComponent } from '@shared/components/header/header';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('angular-rampup-assignment');
+  protected readonly title = signal('medium-pro');
 }

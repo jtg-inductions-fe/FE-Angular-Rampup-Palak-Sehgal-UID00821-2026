@@ -1,6 +1,6 @@
 {
-  "name": "angular-rampup-assignment",
-  "version": "0.0.0",
+  "name": "Medium Pro",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

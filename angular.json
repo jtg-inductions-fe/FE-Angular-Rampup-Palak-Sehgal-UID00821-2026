@@ -8,7 +8,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "angular-rampup-assignment": {
+    "medium-pro": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -78,10 +78,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-rampup-assignment:build:production"
+              "buildTarget": "medium-pro:build:production"
             },
             "development": {
-              "buildTarget": "angular-rampup-assignment:build:development"
+              "buildTarget": "medium-pro:build:development"
             }
           },
           "defaultConfiguration": "development"
