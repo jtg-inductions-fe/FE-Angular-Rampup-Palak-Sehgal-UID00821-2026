@@ -40,10 +40,10 @@ export class Login {
     }
     this.isLoading = true;
     if (this.loginForm.valid) {
-      const raw = this.loginForm.getRawValue();
+      const loginValues = this.loginForm.getRawValue();
       const formData: LoginRequest = {
-        username: raw.username,
-        password: raw.password,
+        username: loginValues.username,
+        password: loginValues.password,
       };
       this.authService.login(formData).subscribe({
         next: response => {

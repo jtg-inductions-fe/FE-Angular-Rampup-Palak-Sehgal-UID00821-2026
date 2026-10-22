@@ -91,14 +91,6 @@ This command will scan the project and check for any lint errors using ESLint.
 
    This command will automatically format all files using Prettier.
 
-9. Generate API Documentation
-
-   ```bash
-   npm run docs
-   ```
-
-Generates code documentation in the docs/ folder using TypeDoc.
-
 ## Environments
 
 This project uses Angular environments configured in the `src/environments/` directory:

@@ -9,8 +9,7 @@
     "lint:fix": "ng lint --fix",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "prepare": "husky",
-    "pre-commit": "lint-staged",
-    "docs": "typedoc"
+    "pre-commit": "lint-staged"
   },
   "private": true,
   "packageManager": "npm@11.19.0",

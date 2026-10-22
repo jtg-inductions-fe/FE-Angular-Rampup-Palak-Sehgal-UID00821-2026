@@ -41,7 +41,7 @@
             ],
             "styles": ["src/styles.scss"],
             "security": {
-              "allowedHosts": ["localhost", "127.0.0.1"]
+              "allowedHosts": ["localhost"]
             }
           },
           "configurations": {
