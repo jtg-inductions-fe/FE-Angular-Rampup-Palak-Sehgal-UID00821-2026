@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #editorDrawer position="end" mode="over" class="dashboard__drawer">
-    <app-article-editor></app-article-editor>
+    <app-article-editor (closeDrawer)="editorDrawer.close()"></app-article-editor>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="dashboard__container">

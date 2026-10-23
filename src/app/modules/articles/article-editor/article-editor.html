@@ -11,12 +11,19 @@
 
     <div class="article-editor__image-upload">
       <label for="featureImageInput" class="article-editor__label">Feature Image</label>
-      <input id="featureImageInput" type="file" accept="image/*" class="article-editor__file-input" (change)="onImageSelected($event)" />
+      <input
+        #fileInput
+        id="featureImageInput"
+        type="file"
+        accept="image/*"
+        class="article-editor__file-input"
+        (change)="onImageSelected($event)"
+      />
 
       @if (featureImage()) {
         <div class="article-editor__image-preview">
           <img class="article-editor__preview-img" alt="Preview" [src]="featureImage()" />
-          <button type="button" class="article-editor__remove-btn" (click)="featureImage.set(null)">
+          <button type="button" class="article-editor__remove-btn" (click)="featureImage.set(null); fileInput.value = ''">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -25,12 +32,7 @@
 
     <div class="article-editor__quill-wrapper">
       <label for="contentEditor" class="article-editor__label">Article Content</label>
-      <quill-editor
-        id="contentEditor"
-        formControlName="content"
-        placeholder="Write article content here..."
-        [styles]="{ height: '250px' }"
-      ></quill-editor>
+      <quill-editor id="contentEditor" formControlName="content" placeholder="Write article content here..."></quill-editor>
     </div>
 
     <mat-form-field appearance="outline" class="article-editor__field">
