@@ -62,6 +62,7 @@
     font-size: typo.$font-size-body;
     color: color.$text-primary;
     line-height: 1.8;
+    overflow-wrap: anywhere;
   }
 
   &__loading {

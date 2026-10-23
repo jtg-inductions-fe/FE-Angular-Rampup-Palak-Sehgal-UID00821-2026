@@ -4,10 +4,8 @@
   </header>
 
   <form class="article-editor__form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="article-editor__field">
-      <mat-label>Article Title</mat-label>
-      <input matInput formControlName="title" placeholder="Enter title" />
-    </mat-form-field>
+    <!-- title -->
+    <app-text-input label="Article Title" placeholder="Enter title" [control]="title"></app-text-input>
 
     <div class="article-editor__image-upload">
       <label for="featureImageInput" class="article-editor__label">Feature Image</label>
@@ -28,19 +26,63 @@
           </button>
         </div>
       }
+      @if (!featureImage() && articleForm.touched) {
+        <mat-error class="editor-error-msg">Feature Image is required.</mat-error>
+      }
     </div>
 
     <div class="article-editor__quill-wrapper">
       <label for="contentEditor" class="article-editor__label">Article Content</label>
-      <quill-editor id="contentEditor" formControlName="content" placeholder="Write article content here..."></quill-editor>
+      <quill-editor id="contentEditor" formControlName="description" placeholder="Write article content here..."></quill-editor>
+      @if (articleForm.get('description')?.invalid && (articleForm.get('description')?.touched || articleForm.get('description')?.dirty)) {
+        @if (articleForm.get('description')?.hasError('required')) {
+          <mat-error class="editor-error-msg">Article Content is required.</mat-error>
+        }
+        @if (articleForm.get('description')?.hasError('minlength')) {
+          <mat-error class="editor-error-msg">Content must be at least 50 characters long.</mat-error>
+        }
+      }
     </div>
-
+    <mat-form-field appearance="outline" class="article-editor__field">
+      <mat-label>Tags</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Enter article tags" formControlName="tags" aria-label="Enter article tags">
+        @for (tag of tags(); track tag) {
+          <mat-chip-row (removed)="removeTag(tag)">
+            {{ tag }}
+            <button matChipRemove [attr.aria-label]="'Remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        }
+        <input
+          placeholder="New tag (press enter or comma)..."
+          [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addTag($event)"
+        />
+      </mat-chip-grid>
+      @if (articleForm.get('tags')?.hasError('required') && (articleForm.get('tags')?.touched || articleForm.get('tags')?.dirty)) {
+        <mat-error>At least one tag is required.</mat-error>
+      }
+    </mat-form-field>
     <mat-form-field appearance="outline" class="article-editor__field">
       <mat-label>Short Description</mat-label>
       <textarea matInput formControlName="shortDescription" rows="2" placeholder="Auto-generated if left blank..."></textarea>
+      @if (
+        articleForm.get('shortDescription')?.hasError('required') &&
+        (articleForm.get('shortDescription')?.touched || articleForm.get('shortDescription')?.dirty)
+      ) {
+        <mat-error>Short Description is required.</mat-error>
+      }
     </mat-form-field>
 
-    <button mat-flat-button color="primary" type="submit" class="article-editor__submit-btn" [disabled]="articleForm.invalid">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="article-editor__submit-btn"
+      [disabled]="articleForm.invalid || !featureImage()"
+    >
       Save Article
     </button>
   </form>
