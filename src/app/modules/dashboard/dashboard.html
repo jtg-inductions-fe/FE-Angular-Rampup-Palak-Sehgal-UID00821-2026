@@ -1,23 +1,31 @@
-<div class="dashboard__container">
-  <header class="dashboard__header">
-    <h1>My Dashboard</h1>
-  </header>
+<mat-sidenav-container>
+  <mat-sidenav #editorDrawer position="end" mode="over" class="dashboard__drawer">
+    <app-article-editor></app-article-editor>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="dashboard__container">
+      <header class="dashboard__header">
+        <h1>My Dashboard</h1>
+      </header>
 
-  @if (articles$ | async; as articles) {
-    @if (articles.length === 0) {
-      <div class="empty-state">
-        <p>No Articles found</p>
-      </div>
-    } @else {
-      <div class="cards-grid">
-        @for (article of articles; track article.id) {
-          <app-article-card [article]="article"></app-article-card>
+      @if (articles$ | async; as articles) {
+        @if (articles.length === 0) {
+          <div class="empty-state">
+            <p>No Articles found</p>
+          </div>
+        } @else {
+          <div class="cards-grid">
+            @for (article of articles; track article.id) {
+              <app-article-card [article]="article"></app-article-card>
+            }
+          </div>
         }
-      </div>
-    }
-  } @else {
-    <div class="loading-state">
-      <p>Loading articles...</p>
+      } @else {
+        <div class="loading-state">
+          <p>Loading articles...</p>
+        </div>
+      }
     </div>
-  }
-</div>
+    <app-floating-button (openDrawer)="editorDrawer.toggle()"></app-floating-button>
+  </mat-sidenav-content>
+</mat-sidenav-container>

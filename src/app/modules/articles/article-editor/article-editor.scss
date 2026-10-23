@@ -1,0 +1,115 @@
+@use 'base/typography' as typo;
+@use 'abstracts/mixins' as mix;
+@use 'abstracts/variables' as color;
+@use 'abstracts/pallete' as pal;
+
+:host {
+  display: block;
+  height: 100%;
+  background-color: color.$background-color;
+}
+
+// Block: .article-editor
+.article-editor {
+  padding: 2rem 2.5rem;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  &__header {
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    font-size: typo.$font-size-heading-3;
+    font-weight: typo.$font-weight-bold;
+    margin: 0;
+  }
+
+  &__form {
+    @include mix.flex-column;
+    gap: 1.5rem;
+  }
+
+  &__field {
+    width: 100%;
+  }
+
+  &__label {
+    display: block;
+    font-size: typo.$font-size-small;
+    font-weight: typo.$font-weight-medium;
+    color: color.$text-primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__image-upload {
+    border: 0.0625rem solid pal.$gray-300;
+    border-radius: 0.4rem;
+    padding: 1.5rem;
+    background-color: pal.$gray-100;
+  }
+
+  &__file-input {
+    display: block;
+    width: 100%;
+    font-size: typo.$font-size-small;
+  }
+
+  &__image-preview {
+    margin-top: 0.75rem;
+    position: relative;
+  }
+
+  &__preview-img {
+    height: 10rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 0.0625rem solid pal.$gray-300;
+  }
+
+  &__remove-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: color.$background-color;
+    border: none;
+    border-radius: 50%;
+    padding: 0.25rem;
+    cursor: pointer;
+    display: flex;
+
+    mat-icon {
+      color: pal.$soft-red;
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &__quill-wrapper {
+    @include mix.flex-column;
+  }
+
+  &__submit-btn {
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+}
+
+// Third-party styles (Quill)
+::ng-deep {
+  .ql-toolbar.ql-snow {
+    border-color: pal.$gray-300;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: #f3f4f6;
+    padding: 0.75rem 1rem;
+  }
+
+  .ql-container.ql-snow {
+    border-color: pal.$gray-300;
+    border-radius: 0 0 0.5rem 0.5rem;
+    font-size: typo.$font-size-body;
+  }
+}

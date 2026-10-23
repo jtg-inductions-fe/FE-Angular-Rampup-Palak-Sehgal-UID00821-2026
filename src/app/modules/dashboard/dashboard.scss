@@ -16,6 +16,12 @@
       margin: 0;
     }
   }
+  &__drawer {
+    width: 60vw;
+    min-width: 43.75rem;
+    max-width: 56.25rem;
+    box-shadow: 0 1.5625rem 3.125rem -0.75rem rgba(0, 0, 0, 0.25);
+  }
 }
 
 .cards-grid {

@@ -10,21 +10,17 @@ export function isHttpError(error: unknown): boolean {
   if (err['name'] === 'HttpErrorResponse' || ('status' in err && 'headers' in err)) {
     return true;
   }
-
-  return (
-    ('rejection' in err && isHttpError(err['rejection'])) ||
-    ('cause' in err && isHttpError(err['cause'])) ||
-    false
-  );
+  return false;
+  // return ('rejection' in err && isHttpError(err['rejection'])) || ('cause' in err && isHttpError(err['cause'])) || false;
 }
 
 export function extractMessage(item: unknown): string | null {
-  if (!item) return null;
+  if (!item) return '';
   if (typeof item === 'string') return item;
 
   if (Array.isArray(item)) {
     const msgs = item.map(extractMessage).filter(Boolean);
-    return msgs.length > 0 ? msgs.join(', ') : null;
+    return msgs.length > 0 ? msgs.join(', ') : '';
   }
 
   if (typeof item === 'object') {

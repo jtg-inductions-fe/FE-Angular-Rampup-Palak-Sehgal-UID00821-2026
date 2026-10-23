@@ -1,0 +1,45 @@
+<div class="article-editor">
+  <header class="article-editor__header">
+    <h2 class="article-editor__title">Create Article</h2>
+  </header>
+
+  <form class="article-editor__form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="article-editor__field">
+      <mat-label>Article Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter title" />
+    </mat-form-field>
+
+    <div class="article-editor__image-upload">
+      <label for="featureImageInput" class="article-editor__label">Feature Image</label>
+      <input id="featureImageInput" type="file" accept="image/*" class="article-editor__file-input" (change)="onImageSelected($event)" />
+
+      @if (featureImage()) {
+        <div class="article-editor__image-preview">
+          <img class="article-editor__preview-img" alt="Preview" [src]="featureImage()" />
+          <button type="button" class="article-editor__remove-btn" (click)="featureImage.set(null)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="article-editor__quill-wrapper">
+      <label for="contentEditor" class="article-editor__label">Article Content</label>
+      <quill-editor
+        id="contentEditor"
+        formControlName="content"
+        placeholder="Write article content here..."
+        [styles]="{ height: '250px' }"
+      ></quill-editor>
+    </div>
+
+    <mat-form-field appearance="outline" class="article-editor__field">
+      <mat-label>Short Description</mat-label>
+      <textarea matInput formControlName="shortDescription" rows="2" placeholder="Auto-generated if left blank..."></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" class="article-editor__submit-btn" [disabled]="articleForm.invalid">
+      Save Article
+    </button>
+  </form>
+</div>
