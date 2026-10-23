@@ -1,10 +1,12 @@
+@use 'base/typography' as typo;
+
 .tag-badge {
   display: inline-block;
   background-color: #f0f0f0;
   color: #333;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 12px;
-  margin-right: 8px;
-  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2rem;
+  font-size: typo.$font-size-small;
+  margin-right: 0.5rem;
+  font-weight: typo.$font-weight-medium;
 }
