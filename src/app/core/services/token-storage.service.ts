@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { NotificationService } from './notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 const TOKEN_KEY = 'auth-token';
 

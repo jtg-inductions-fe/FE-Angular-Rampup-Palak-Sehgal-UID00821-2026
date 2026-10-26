@@ -1,4 +1,4 @@
-import { ApiResponse } from './api-response.model';
+import { ApiResponse } from '@core/models/api-response.model';
 
 /**
  * 1. Tag Entity

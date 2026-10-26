@@ -1,4 +1,5 @@
-import { ApiResponse, PaginatedData } from './api-response.model';
+import { ApiResponse, PaginatedData } from '@core/models/api-response.model';
+import { SortByOption, SortOrderOption } from './article-constants';
 
 /**
  * 1. Article Entity
@@ -39,8 +40,6 @@ export interface UpdateArticleRequest {
 /**
  * 4. Filtering, Sorting & Query Parameters
  */
-export type SortByOption = 'createdAt' | 'updatedAt' | 'title';
-export type SortOrderOption = 'ASC' | 'DESC';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export type ArticleQueryParams = {

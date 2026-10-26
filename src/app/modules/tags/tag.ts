@@ -2,9 +2,9 @@ import { Service } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { BaseApiService } from './base-api.service';
+import { BaseApiService } from '@core/services/base-api.service';
 import { Tag as TagModel, CreateTagRequest } from '@core/models';
-import { ENDPOINTS } from '../constants/endpoints';
+import { ENDPOINTS } from '@modules/constants/endpoints';
 
 @Service()
 export class Tag extends BaseApiService {

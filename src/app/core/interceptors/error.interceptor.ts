@@ -5,7 +5,7 @@ import { catchError, throwError } from 'rxjs';
 
 import { AuthService } from '@core/services/auth.service';
 import { ERROR_MESSAGES, HttpStatus, HTTP_ERROR_MAP } from '@shared/constants/error-messages.constants';
-import { NotificationService } from '@core/services/notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 import { extractMessage } from '@core/utils/error.utils';
 
 const authEndPoints = ['users/login', 'users/register'];

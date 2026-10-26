@@ -2,9 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { catchError, EMPTY, map, Observable } from 'rxjs';
 
-import { ArticleService } from '@core/services/article.service';
+import { ArticleService } from '@modules/articles/article.service';
 import { Article, ArticleListResponse } from '@core/models';
-import { NotificationService } from '@src/app/core/services/notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-dashboard',

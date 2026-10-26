@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanDeactivateFn } from '@angular/router';
 
-import { NotificationService } from '../services/notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 export interface HasUnsavedChanges {
   hasUnsavedChanges: () => boolean;

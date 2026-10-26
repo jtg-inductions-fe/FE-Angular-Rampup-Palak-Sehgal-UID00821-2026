@@ -8,7 +8,7 @@ import { TextInputComponent } from '@shared/components/text-input/text-input.com
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { AuthService } from '@core/services/auth.service';
 import { RegisterRequest } from '@core/models';
-import { NotificationService } from '@core/services/notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],

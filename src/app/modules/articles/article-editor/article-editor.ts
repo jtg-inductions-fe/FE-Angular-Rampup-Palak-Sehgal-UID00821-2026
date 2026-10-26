@@ -9,9 +9,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipsModule, MatChipInputEvent } from '@angular/material/chips';
 import { QuillModule } from 'ngx-quill';
 
-import { ArticleService } from '@src/app/core/services/article.service';
-import { NotificationService } from '@src/app/core/services/notification.service';
-import { TextInputComponent } from '@src/app/shared/components/text-input/text-input.component';
+import { ArticleService } from '@modules/articles/article.service';
+import { NotificationService } from '@shared/services/notification.service';
+import { TextInputComponent } from '@shared/components/text-input/text-input.component';
 
 @Component({
   selector: 'app-article-editor',

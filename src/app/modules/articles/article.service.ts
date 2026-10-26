@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { map, Observable } from 'rxjs';
 
-import { BaseApiService } from './base-api.service';
-
+import { BaseApiService } from '@core/services/base-api.service';
 import { ApiResponse, Article, ArticleListResponse, ArticleQueryParams, ArticleResponse, CreateArticleRequest } from '@core/models';
-import { ENDPOINTS } from '../constants/endpoints';
+import { ENDPOINTS } from '@modules/constants/endpoints';
 
 @Injectable({
   providedIn: 'root',

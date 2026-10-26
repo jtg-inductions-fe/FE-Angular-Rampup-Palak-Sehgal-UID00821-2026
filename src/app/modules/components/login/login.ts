@@ -6,7 +6,7 @@ import { TextInputComponent } from '@shared/components/text-input/text-input.com
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { LoginRequest } from '@core/models';
 import { AuthService } from '@core/services/auth.service';
-import { NotificationService } from '@core/services/notification.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   imports: [ReactiveFormsModule, TextInputComponent, ButtonComponent, RouterLink],
@@ -39,23 +39,21 @@ export class Login {
       return;
     }
     this.isLoading = true;
-    if (this.loginForm.valid) {
-      const loginValues = this.loginForm.getRawValue();
-      const formData: LoginRequest = {
-        username: loginValues.username,
-        password: loginValues.password,
-      };
-      this.authService.login(formData).subscribe({
-        next: response => {
-          this.notificationService.showNotification(response.message);
-          this.router.navigate(['/']);
-          this.isLoading = false;
-        },
-        error: () => {
-          this.isLoading = false;
-          // Handled by errorInterceptor
-        },
-      });
-    }
+    const loginValues = this.loginForm.getRawValue();
+    const formData: LoginRequest = {
+      username: loginValues.username,
+      password: loginValues.password,
+    };
+    this.authService.login(formData).subscribe({
+      next: response => {
+        this.notificationService.showNotification(response.message);
+        this.router.navigate(['/']);
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        // Handled by errorInterceptor
+      },
+    });
   }
 }
