@@ -4,10 +4,11 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
 import { AuthService } from '@core/services/auth.service';
-import { ERROR_MESSAGES } from '@shared/constants/error-messages.constants';
-import { HttpStatus } from '@shared/constants/http-status.enum';
+import { ERROR_MESSAGES, HttpStatus, HTTP_ERROR_MAP } from '@shared/constants/error-messages.constants';
 import { NotificationService } from '@core/services/notification.service';
 import { extractMessage } from '@core/utils/error.utils';
+
+const authEndPoints = ['users/login', 'users/register'];
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -15,42 +16,27 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      const isAuthEndpoint = req.url.includes('users/login') || req.url.includes('users/register');
-      const isUnauthorized = error.status === HttpStatus.unauthorized;
+      const isAuthEndpoint = authEndPoints.some(endpoint => req.url.includes(endpoint));
 
-      if (!isAuthEndpoint && isUnauthorized) {
-        notificationService.showNotification(ERROR_MESSAGES.UNAUTHORIZED);
+      if (!isAuthEndpoint && error.status === HttpStatus.unauthorized) {
+        notificationService.showNotification(HTTP_ERROR_MAP[error.status]);
         authService.logout();
         return throwError(() => error);
-      } else if (error.status === HttpStatus.forbidden) {
-        notificationService.showNotification(ERROR_MESSAGES.FORBIDDEN);
+      }
+
+      if (error.status === HttpStatus.forbidden) {
+        notificationService.showNotification(HTTP_ERROR_MAP[error.status]);
         return throwError(() => error);
       }
-      let errorMessage = ERROR_MESSAGES.UNEXPECTED;
 
-      if (error.error instanceof ErrorEvent) {
-        errorMessage = `${ERROR_MESSAGES.NETWORK_ERROR}: ${error.error.message}`;
-      } else if (error.status === 0) {
-        errorMessage = ERROR_MESSAGES.NETWORK_ERROR;
-      } else if (error.status >= 500) {
-        errorMessage = ERROR_MESSAGES.SERVER_ERROR;
-      } else if (error.error) {
-        const apiError = error.error;
+      const errorMessage =
+        error.error instanceof ErrorEvent
+          ? `${ERROR_MESSAGES.NETWORK_ERROR}: ${error.error.message}`
+          : error.status >= 500
+            ? ERROR_MESSAGES.SERVER_ERROR
+            : HTTP_ERROR_MAP[error.status] || extractMessage(error.error) || error.message || ERROR_MESSAGES.UNEXPECTED;
 
-        if (typeof apiError === 'string') {
-          errorMessage = apiError;
-        } else if (typeof apiError === 'object' && apiError !== null) {
-          const obj = apiError as Record<string, unknown>;
-          const parsedMsg =
-            extractMessage(obj['error']) || extractMessage(obj['errors']) || (typeof obj['message'] === 'string' ? obj['message'] : null);
-
-          if (parsedMsg) errorMessage = parsedMsg;
-        }
-      } else if (error.message) {
-        errorMessage = error.message;
-      }
       notificationService.showNotification(errorMessage);
-
       return throwError(() => error);
     })
   );

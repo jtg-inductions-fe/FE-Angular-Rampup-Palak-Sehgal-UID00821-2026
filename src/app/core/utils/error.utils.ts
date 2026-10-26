@@ -11,10 +11,9 @@ export function isHttpError(error: unknown): boolean {
     return true;
   }
   return false;
-  // return ('rejection' in err && isHttpError(err['rejection'])) || ('cause' in err && isHttpError(err['cause'])) || false;
 }
 
-export function extractMessage(item: unknown): string | null {
+export function extractMessage(item: unknown): string {
   if (!item) return '';
   if (typeof item === 'string') return item;
 
@@ -26,14 +25,11 @@ export function extractMessage(item: unknown): string | null {
   if (typeof item === 'object') {
     const obj = item as Record<string, unknown>;
 
-    if (typeof obj['msg'] === 'string') return obj['msg'];
-    if (typeof obj['message'] === 'string' && obj['message'] !== 'Validation failed') {
-      return obj['message'];
-    }
+    const msg = obj['msg'] || obj['message'] || obj['error'] || obj['errors'];
+    if (typeof msg === 'string' && msg !== 'Validation failed') return msg;
 
-    const values = Object.values(obj).map(extractMessage).filter(Boolean);
-    return values.length > 0 ? values.join(', ') : null;
+    return Object.values(obj).map(extractMessage).filter(Boolean).join(', ') || '';
   }
 
-  return null;
+  return '';
 }
