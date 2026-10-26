@@ -5,12 +5,13 @@ import { map, Observable } from 'rxjs';
 import { BaseApiService } from './base-api.service';
 
 import { ApiResponse, Article, ArticleListResponse, ArticleQueryParams, ArticleResponse, CreateArticleRequest } from '@core/models';
+import { ENDPOINTS } from '../constants/endpoints';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService extends BaseApiService {
-  private readonly endpoint = 'articles';
+  private readonly endpoint = ENDPOINTS['articles'];
 
   //get article whose id is passed
   getArticleById(id: string): Observable<Article> {

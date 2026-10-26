@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 
 import { BaseApiService } from './base-api.service';
 import { Tag as TagModel, CreateTagRequest } from '@core/models';
+import { ENDPOINTS } from '../constants/endpoints';
 
 @Service()
 export class Tag extends BaseApiService {
-  private readonly endpoint = 'tags';
+  private readonly endpoint = ENDPOINTS['tags'];
   // get tag
   getTags(): Observable<string[]> {
     return this.get<string[]>(this.endpoint);
