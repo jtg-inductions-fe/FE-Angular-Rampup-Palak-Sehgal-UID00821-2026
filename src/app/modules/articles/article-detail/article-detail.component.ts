@@ -3,13 +3,14 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { TruncatePipe } from '@src/app/shared/pipe/truncate-pipe';
-import { ReadingTimePipe } from '@src/app/shared/pipe/reading-time-pipe';
 
 import { map, Observable, startWith } from 'rxjs';
 
+import { TruncatePipe } from '@shared/pipe/truncate-pipe';
+import { ReadingTimePipe } from '@shared/pipe/reading-time-pipe';
 import { Article } from '@core/models';
-import { ArticleTagComponent } from '@modules/articles/article-tag/article-tag';
+import { ArticleTagComponent } from '@modules/articles/components/article-tag/article-tag';
+
 @Component({
   selector: 'app-article-detail',
   standalone: true,
