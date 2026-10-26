@@ -1,6 +1,8 @@
+@use 'abstracts/variables' as var;
+
 .fab-btn {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 100;
+  z-index: var.$z-floating-button;
 }

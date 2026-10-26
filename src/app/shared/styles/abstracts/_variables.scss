@@ -8,10 +8,6 @@ $background-color: pallete.$pure-white;
 $text-primary: pallete.$gray-900;
 $text-secondary: pallete.$gray-600;
 
-// Responsive Breakpoints
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-);
+//z-index
+$z-base: 10;
+$z-floating-button: 100;
