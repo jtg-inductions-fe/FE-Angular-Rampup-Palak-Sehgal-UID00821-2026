@@ -8,9 +8,10 @@ import { ArticleCard } from '@modules/articles/components/article-card/article-c
 import { ArticleTagComponent } from '@modules/articles/components/article-tag/article-tag';
 import { ArticleEditor } from '@modules/articles/components/article-editor/article-editor';
 import { FloatingButton } from '@shared/components/floating-button/floating-button';
+import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [Dashboard, ArticleCard],
-  imports: [CommonModule, DashboardRoutingModule, ArticleTagComponent, MatSidenavModule, ArticleEditor, FloatingButton],
+  imports: [CommonModule, DashboardRoutingModule, ArticleTagComponent, MatSidenavModule, ArticleEditor, FloatingButton, MatIcon],
 })
 export class DashboardModule {}

@@ -1,10 +1,11 @@
-@use 'abstracts/variables' as color;
+@use 'abstracts/variables/variables' as color;
 @use 'abstracts/pallete' as pallete;
 @use 'abstracts/mixins' as mix;
 @use 'base/typography' as typo;
 @use 'abstracts/spacing' as space;
 
 .article-card {
+  position: relative;
   background: color.$background-color;
   border: 1px solid pallete.$gray-100;
   border-radius: space.spacer(2);
@@ -69,6 +70,18 @@
   &__author-label {
     font-weight: typo.$font-weight-bold;
     color: color.$text-primary;
+  }
+  &__edit-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
   }
   .article-card__tags-container {
     display: flex;

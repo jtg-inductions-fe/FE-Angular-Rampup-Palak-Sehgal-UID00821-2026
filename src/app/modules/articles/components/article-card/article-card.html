@@ -1,5 +1,10 @@
 @if (article) {
   <div class="article-card">
+    <!-- edit icon -->
+    <button mat-icon-button class="article-card__edit-btn" (click)="onEdit($event)">
+      <mat-icon>edit</mat-icon>
+    </button>
+
     <!-- Feature Image -->
     <div class="article-card__image">
       <img [src]="article.image || 'assets/default-image.jpg'" [alt]="article.title" />

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Article } from '@core/models';
 
@@ -10,4 +10,10 @@ import { Article } from '@core/models';
 })
 export class ArticleCard {
   @Input() article!: Article;
+  @Output() edit = new EventEmitter<Article>();
+
+  onEdit(event: Event) {
+    event.stopPropagation();
+    this.edit.emit(this.article);
+  }
 }
