@@ -9,7 +9,7 @@ import { ReadingTimePipe } from '@src/app/shared/pipe/reading-time-pipe';
 import { map, Observable, startWith } from 'rxjs';
 
 import { Article } from '@core/models';
-import { ArticleTagComponent } from '@src/app/shared/components/article-tag/article-tag';
+import { ArticleTagComponent } from '@modules/articles/article-tag/article-tag';
 @Component({
   selector: 'app-article-detail',
   standalone: true,

@@ -31,6 +31,7 @@ export interface CreateArticleRequest {
  * 3. Update Article Request Payload
  */
 export interface UpdateArticleRequest {
+  id: string;
   title?: string;
   shortDescription?: string;
   description?: string;
