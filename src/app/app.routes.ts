@@ -18,24 +18,25 @@ export const routes: Routes = [
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
   },
   {
-    path: 'dashboard',
-    canActivate: [authGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard-module').then(m => m.DashboardModule),
+    path: '',
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./modules/dashboard/dashboard-module').then(m => m.DashboardModule),
+      },
+      {
+        path: 'articles/:id',
+        resolve: {
+          articleData: articleResolver,
+        },
+        loadComponent: () => import('./modules/articles/article-detail/article-detail.component').then(m => m.ArticleDetailComponent),
+      },
+    ],
   },
-  {
-    path: 'articles/:id',
-    canActivate: [authGuard],
-    resolve: {
-      articleData: articleResolver,
-    },
-    loadComponent: () =>
-      import('./modules/articles/article-detail/article-detail.component').then(
-        m => m.ArticleDetailComponent
-      ),
-  },
+
   {
     path: '**',
-    loadComponent: () =>
-      import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent),
+    loadComponent: () => import('./shared/components/not-found/not-found.component').then(m => m.NotFoundComponent),
   },
 ];
