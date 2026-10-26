@@ -39,6 +39,7 @@ export class ArticleEditor {
   notificationService = inject(NotificationService);
   tags = signal<string[]>([]);
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  @Output() articleCreated = new EventEmitter<void>();
 
   constructor() {
     this.articleForm = this.fb.group({
@@ -107,6 +108,9 @@ export class ArticleEditor {
         this.articleForm.reset();
         this.tags.set([]);
         this.featureImage.set(null);
+
+        this.articleCreated.emit();
+
         this.closeDrawer.emit();
       },
       error: err => {

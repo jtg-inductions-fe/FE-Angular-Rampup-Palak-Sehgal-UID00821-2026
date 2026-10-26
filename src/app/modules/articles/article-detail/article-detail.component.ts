@@ -24,6 +24,10 @@ export class ArticleDetailComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
+    this.getArticles();
+  }
+
+  getArticles() {
     this.articleState$ = this.route.data.pipe(
       map(data => ({
         isLoading: false,

@@ -18,6 +18,10 @@ export class Dashboard implements OnInit {
   notificationService = inject(NotificationService);
   isLoading = false;
   ngOnInit(): void {
+    this.loadArticles();
+  }
+
+  loadArticles(): void {
     this.articles$ = this.articleService.getArticles().pipe(
       map((response: ArticleListResponse) => response.data?.data || []),
       catchError(error => {
