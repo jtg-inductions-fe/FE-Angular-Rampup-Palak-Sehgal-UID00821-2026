@@ -1,6 +1,10 @@
 <mat-sidenav-container>
-  <mat-sidenav #editorDrawer position="end" mode="over" class="dashboard__drawer">
-    <app-article-editor (closeDrawer)="editorDrawer.close()" (articleCreated)="loadArticles()"></app-article-editor>
+  <mat-sidenav #editorDrawer position="end" mode="over" class="dashboard__drawer" (openedChange)="onDrawerChange($event)" x>
+    <app-article-editor
+      [article]="selectedArticle"
+      (closeDrawer)="editorDrawer.close()"
+      (articleCreated)="loadArticles()"
+    ></app-article-editor>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="dashboard__container">
@@ -16,7 +20,7 @@
         } @else {
           <div class="cards-grid">
             @for (article of articles; track article.id) {
-              <app-article-card [article]="article"></app-article-card>
+              <app-article-card [article]="article" (edit)="onEditArticle($event); editorDrawer.open()"></app-article-card>
             }
           </div>
         }
@@ -26,6 +30,6 @@
         </div>
       }
     </div>
-    <app-floating-button (openDrawer)="editorDrawer.toggle()"></app-floating-button>
+    <app-floating-button (openDrawer)="onCreateNew(); editorDrawer.open()"></app-floating-button>
   </mat-sidenav-content>
 </mat-sidenav-container>

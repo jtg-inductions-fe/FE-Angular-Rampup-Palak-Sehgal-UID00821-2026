@@ -2,6 +2,14 @@
 @use 'abstracts/spacing' as space;
 @use 'base/typography' as typo;
 
+mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .dashboard {
   &__container {
     padding: space.spacer(4);

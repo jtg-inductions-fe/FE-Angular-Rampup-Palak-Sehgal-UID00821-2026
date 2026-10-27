@@ -5,15 +5,12 @@
 
 :host {
   display: block;
-  height: 100%;
   background-color: color.$background-color;
 }
 
 // Block: .article-editor
 .article-editor {
   padding: 2rem 2.5rem;
-  height: 100%;
-  overflow-y: auto;
   box-sizing: border-box;
 
   &__header {

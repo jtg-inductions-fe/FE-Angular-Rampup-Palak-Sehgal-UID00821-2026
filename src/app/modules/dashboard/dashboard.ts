@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DOCUMENT, inject, OnInit, Renderer2 } from '@angular/core';
 
 import { catchError, EMPTY, map, Observable } from 'rxjs';
 
@@ -16,7 +16,30 @@ export class Dashboard implements OnInit {
   private articleService = inject(ArticleService);
   articles$!: Observable<Article[]>;
   notificationService = inject(NotificationService);
+
+  private renderer = inject(Renderer2);
+  private document = inject(DOCUMENT);
+
   isLoading = false;
+  selectedArticle: Article | null = null;
+
+  //hide the page scroll when drawer is open
+  onDrawerChange(isOpen: boolean) {
+    if (isOpen) {
+      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
+    } else {
+      this.renderer.removeStyle(this.document.body, 'overflow');
+    }
+  }
+
+  onEditArticle(article: Article) {
+    this.selectedArticle = article;
+  }
+
+  onCreateNew() {
+    this.selectedArticle = null;
+  }
+
   ngOnInit(): void {
     this.loadArticles();
   }

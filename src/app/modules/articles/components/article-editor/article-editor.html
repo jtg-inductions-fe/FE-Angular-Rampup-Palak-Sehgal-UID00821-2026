@@ -1,6 +1,6 @@
 <div class="article-editor">
   <header class="article-editor__header">
-    <h2 class="article-editor__title">Create Article</h2>
+    <h2 class="article-editor__title">{{ isEditMode ? 'Update Article' : 'Create Article' }}</h2>
   </header>
 
   <form class="article-editor__form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
@@ -83,7 +83,7 @@
       class="article-editor__submit-btn"
       [disabled]="articleForm.invalid || !featureImage()"
     >
-      Save Article
+      {{ isEditMode ? 'Update Article' : 'Save Article' }}
     </button>
   </form>
 </div>

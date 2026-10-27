@@ -1,4 +1,4 @@
-import { Component, inject, Output, signal, EventEmitter } from '@angular/core';
+import { Component, inject, Output, signal, EventEmitter, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +12,8 @@ import { QuillModule } from 'ngx-quill';
 import { ArticleService } from '@modules/articles/article.service';
 import { NotificationService } from '@shared/services/notification.service';
 import { TextInputComponent } from '@shared/components/text-input/text-input.component';
+import { Article } from '@modules/articles/article.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-article-editor',
@@ -31,6 +33,7 @@ import { TextInputComponent } from '@shared/components/text-input/text-input.com
   styleUrls: ['./article-editor.scss'],
 })
 export class ArticleEditor {
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   private fb = inject(FormBuilder);
   articleForm: FormGroup;
   featureImage = signal<string | null>(null);
@@ -49,9 +52,46 @@ export class ArticleEditor {
       tags: [[], Validators.required],
     });
   }
+
   get title(): FormControl {
     return this.articleForm.get('title') as FormControl;
   }
+
+  isEditMode = false;
+  currentArticleId: string | undefined;
+
+  @Input() set article(data: Article | null) {
+    if (data) {
+      this.isEditMode = true;
+      this.currentArticleId = data.id;
+
+      const existingTags = data.tags || [];
+      this.tags.set(existingTags);
+
+      this.articleForm.patchValue({
+        title: data.title,
+        content: data.description,
+        shortDescription: data.shortDescription,
+        description: data.description,
+        tags: existingTags,
+      });
+
+      if (data.image) {
+        this.featureImage.set(data.image);
+      }
+    } else {
+      this.isEditMode = false;
+      this.currentArticleId = undefined;
+      this.articleForm?.reset();
+      this.featureImage.set(null);
+
+      this.tags.set([]);
+      if (this.fileInput) {
+        this.fileInput.nativeElement.value = '';
+      }
+    }
+  }
+
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
@@ -92,7 +132,22 @@ export class ArticleEditor {
     this.tags.update(currentTags => currentTags.filter(tag => tag !== tagToRemove));
     this.articleForm.patchValue({ tags: this.tags() });
   }
+  handleSuccess = (message: string) => {
+    this.notificationService.showNotification(message);
+    this.articleForm.reset();
+    this.tags.set([]);
+    this.featureImage.set(null);
+    if (this.fileInput) {
+      this.fileInput.nativeElement.value = '';
+    }
+    this.articleCreated.emit();
+    this.closeDrawer.emit();
+  };
 
+  handleError = (err: HttpErrorResponse, defaultMessage: string) => {
+    const errorMessage = err.error?.message || defaultMessage;
+    this.notificationService.showNotification(errorMessage);
+  };
   onSubmit() {
     if (this.articleForm.invalid) return;
     const content = this.articleForm.get('description')?.value;
@@ -102,21 +157,16 @@ export class ArticleEditor {
       shortDescription: shortDesc,
       image: this.featureImage(),
     };
-    this.articleService.createArticle(finalArticleData).subscribe({
-      next: response => {
-        this.notificationService.showNotification(response.message);
-        this.articleForm.reset();
-        this.tags.set([]);
-        this.featureImage.set(null);
-
-        this.articleCreated.emit();
-
-        this.closeDrawer.emit();
-      },
-      error: err => {
-        const errorMessage = err.error?.message || 'An error occurred while creating the article';
-        this.notificationService.showNotification(errorMessage);
-      },
-    });
+    if (this.isEditMode && this.currentArticleId) {
+      this.articleService.updateArticle(this.currentArticleId, finalArticleData).subscribe({
+        next: response => this.handleSuccess(response.message || 'Article updated successfully'),
+        error: err => this.handleError(err, 'An error occurred while updating the article'),
+      });
+    } else {
+      this.articleService.createArticle(finalArticleData).subscribe({
+        next: response => this.handleSuccess(response.message || 'Article created successfully'),
+        error: err => this.handleError(err, 'An error occurred while creating the article'),
+      });
+    }
   }
 }

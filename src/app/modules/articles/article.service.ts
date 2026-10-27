@@ -25,8 +25,8 @@ export class ArticleService extends BaseApiService {
     return this.post<ApiResponse>(this.endpoint, body);
   }
   //update existing article
-  updateArticle(id: string, body: Article): Observable<Article> {
-    return this.put<Article>(`${this.endpoint}/${id}`, body);
+  updateArticle(id: string, body: Article): Observable<ApiResponse> {
+    return this.put<ApiResponse>(`${this.endpoint}/${id}`, body);
   }
   //delete the article by given id
   deleteArticle(id: string): Observable<void> {
